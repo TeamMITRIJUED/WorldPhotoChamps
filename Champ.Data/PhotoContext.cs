@@ -1,21 +1,13 @@
-using Champ.Data.Migrations;
-using Champ.Models;
-using Microsoft.AspNet.Identity.EntityFramework;
-
 namespace Champ.Data
 {
-    using System;
     using System.Data.Entity;
-    using System.Linq;
+    using Microsoft.AspNet.Identity.EntityFramework;
+
+    using Migrations;
+    using Models;
 
     public class PhotoContext : IdentityDbContext<User>
     {
-        // Your context has been configured to use a 'PhotoContext' connection string from your application's 
-        // configuration file (App.config or Web.config). By default, this connection string targets the 
-        // 'Champ.Data.PhotoContext' database on your LocalDb instance. 
-        // 
-        // If you wish to target a different database and/or database provider, modify the 'PhotoContext' 
-        // connection string in the application configuration file.
         public PhotoContext()
             : base("name=PhotoContext")
         {
@@ -27,15 +19,65 @@ namespace Champ.Data
             return new PhotoContext();
         }
 
-        // Add a DbSet for each entity type that you want to include in your model. For more information 
-        // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
+        public virtual IDbSet<Contest> Contests { get; set; }
 
-        // public virtual DbSet<MyEntity> MyEntities { get; set; }
+        public virtual IDbSet<Picture> Pictures { get; set; }
+
+        public virtual IDbSet<Vote> Votes { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Contest>()
+                .HasMany(c => c.Participants)
+                .WithMany(u => u.ParticipatedIn)
+                .Map(m =>
+                {
+                    m.MapLeftKey("ContestId");
+                    m.MapRightKey("ParticipantId");
+                    m.ToTable("Contests_Participants");
+                });
+
+            modelBuilder.Entity<Contest>()
+                .HasMany(c => c.Comittee)
+                .WithMany(u => u.EvaluatedContests)
+                .Map(m =>
+                {
+                    m.MapLeftKey("ContestId");
+                    m.MapRightKey("MemberId");
+                    m.ToTable("Contests_Evaluators");
+                });
+
+            modelBuilder.Entity<Contest>()
+                .HasMany(c => c.Pictures)
+                .WithRequired(p => p.Contest)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.CreatedContests)
+                .WithRequired(c => c.Creator)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.WonContests)
+                .WithOptional(c => c.Winner)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.UploadedPictures)
+                .WithRequired(p => p.Author)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Votes)
+                .WithRequired(v => v.Voter)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Picture>()
+                .HasMany(p => p.Votes)
+                .WithRequired(v => v.Picture)
+                .WillCascadeOnDelete(false);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
-
-    //public class MyEntity
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //}
 }
