@@ -158,6 +158,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\ContestManagementController.cs" />
+    <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -179,6 +181,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Dashboard\Views\web.config" />
+    <Content Include="Areas\Dashboard\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Dashboard\Views\ContestManagement\Show.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -228,6 +234,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Dashboard\Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

@@ -23,7 +23,7 @@ namespace Champ.Data.Migrations
                 roleManager.Create(new IdentityRole("Admin"));
             }
 
-            if (!context.Users.Any(u => u.UserName == "admin"))
+            if (!context.Users.Any(u => u.UserName == "admin@admin.com"))
             {
                 var userManager = new UserManager<User>(new UserStore<User>(context));
                 var admin = new User
