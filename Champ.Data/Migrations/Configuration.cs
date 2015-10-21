@@ -1,11 +1,13 @@
 namespace Champ.Data.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Champ.Data.PhotoContext>
+    using Models;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<PhotoContext>
     {
         public Configuration()
         {
@@ -13,20 +15,26 @@ namespace Champ.Data.Migrations
             this.AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(Champ.Data.PhotoContext context)
+        protected override void Seed(PhotoContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            if (!context.Roles.Any(r => r.Name == "Admin"))
+            {
+                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+                roleManager.Create(new IdentityRole("Admin"));
+            }
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            if (!context.Users.Any(u => u.UserName == "admin"))
+            {
+                var userManager = new UserManager<User>(new UserStore<User>(context));
+                var admin = new User
+                {
+                    UserName = "admin@admin.com",
+                    Email = "admin@admin.com"
+                };
+
+                userManager.Create(admin, "adm1nsamaz");
+                userManager.AddToRole(admin.Id, "Admin");
+            }
         }
     }
 }
