@@ -4,16 +4,16 @@
 <h2>Contests</h2>
 @foreach (var contest in Model)
 {
-    <div>
-        <div>Title: @contest.Title</div>
+    <div class="well well-bg" style="border: 1px solid gray">
+        <div><strong>Title: </strong>@contest.Title</div>
 
-        <div>Description: @contest.Description </div>
+        <div><strong>Description: </strong>@contest.Description </div>
 
-        <div>Count of participants: @contest.CountOfParticipants</div>
+        <div><strong>Count of participants: </strong> @contest.CountOfParticipants</div>
 
-        <div>Number of Allowed participants: @contest.NumberOfAllowedParticipants </div>
+        <div><strong>Number of Allowed participants: </strong>@contest.NumberOfAllowedParticipants </div>
 
-        <div>Closes on: @contest.ClosesOn</div>
+        <div><strong>Closes on: </strong>@contest.ClosesOn</div>
     </div>
     <br/>
 }
