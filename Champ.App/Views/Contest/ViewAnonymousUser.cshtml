@@ -1,0 +1,13 @@
+﻿@model  IEnumerable<Champ.App.Models.ContestViewModel>
+
+<h2>Contests</h2>
+@foreach (var contest in Model)
+{
+    <div>
+        <div>Title: @contest.Title</div>
+
+        <div>Description: @contest.Description </div>
+    </div>
+    <br/>
+}
+

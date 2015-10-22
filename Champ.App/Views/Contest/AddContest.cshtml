@@ -1,0 +1,41 @@
+﻿@model Champ.App.Models.ContestViewModel
+
+
+@using (@Html.BeginForm(FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="editor-label">
+        @Html.LabelFor(m => m.Title)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(m => m.Title)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(m => m.Description)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(m => m.Description)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(m => m.ClosesOn)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(m => m.ClosesOn)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(m => m.NumberOfAllowedParticipants)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(m => m.NumberOfAllowedParticipants)
+    </div>
+
+    <div>
+        <input type="submit" value="Submit" />
+    </div>
+
+}
+
