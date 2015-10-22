@@ -8,12 +8,13 @@ namespace Champ.App.Models
 {
     public class ContestViewModel
     {
+        public int Id { get; set; }
+
         [Required]
         public string Title { get; set; }
 
         [Required]
         public string Description { get; set; }
-
 
         public DateTime CreatenOn { get; set; }
 
@@ -31,6 +32,6 @@ namespace Champ.App.Models
 
         public int CountOfParticipants { get; set; }
 
-       
+        public bool HasParticipated { get; set; }
     }
 }

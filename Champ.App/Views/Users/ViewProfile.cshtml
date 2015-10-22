@@ -12,3 +12,6 @@
     <p>Participated in Contests: @Model.ParticipatedInContests</p>
     <p>Won Contests: @Model.WonContests</p>
 </div>
+<div>
+    @Html.ActionLink("Contest Management", "Index", "Users", null, new { title = "Manage contests"})
+</div>

@@ -99,6 +99,7 @@ namespace Champ.App.Controllers
                  .Take(6)
                  .Select(c => new ContestViewModel()
                  {
+                     Id = c.Id,
                      Title = c.Title,
                      Description = c.Description,
                     
@@ -113,12 +114,14 @@ namespace Champ.App.Controllers
                 .Take(6)
                 .Select(c => new ContestViewModel()
                 {
+                    Id = c.Id,
                     Title = c.Title,
                     Description = c.Description,
                     CountOfParticipants = c.Participants.Count,
                     ClosesOn = c.ClosesOn,
                     NumberOfAllowedParticipants = c.NumberOfAllowedParticipants,
-                    ParticipationStrategy = c.ParticipationStrategy
+                    ParticipationStrategy = c.ParticipationStrategy,
+                    HasParticipated = c.Participants.Any(p => p.Id == loggedUserId)
                 }).ToList();
                 return View("ViewLoggedUser", contests);
             }
