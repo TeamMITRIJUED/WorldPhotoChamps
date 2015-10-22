@@ -15,8 +15,6 @@ namespace Champ.App.Models
         public string Description { get; set; }
 
 
-        public virtual User Creator { get; set; }
-
         public DateTime CreatenOn { get; set; }
 
         public VotingStrategy VotingStrategy { get; set; }

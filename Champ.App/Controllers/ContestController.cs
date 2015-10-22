@@ -17,12 +17,14 @@ namespace Champ.App.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult AddContest()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddContest(ContestViewModel contest)
@@ -55,7 +57,29 @@ namespace Champ.App.Controllers
                 this.Data.SaveChanges();
             }
 
+            TempData["contest"] = contest.Title;
             return View();
+        }
+
+
+        public ActionResult GetContest(int id)
+        {
+            var searchedContest = this.Data.Contests.Find(id);
+
+            if (searchedContest == null)
+            {
+                return HttpNotFound();
+            }
+            var contest = new ContestViewModel()
+            {
+                Title = searchedContest.Title,
+                Description = searchedContest.Description,
+                CreatenOn = searchedContest.CreatenOn,
+                ClosesOn = searchedContest.ClosesOn,
+                NumberOfAllowedParticipants = searchedContest.NumberOfAllowedParticipants
+            };
+
+            return View(contest);
         }
 
         public ActionResult ViewContests()

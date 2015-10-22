@@ -237,6 +237,8 @@
     <Content Include="Views\Contest\ViewLoggedUser.cshtml" />
     <Content Include="Views\Contest\ViewAnonymousUser.cshtml" />
     <Content Include="Views\Contest\AddContest.cshtml" />
+    <Content Include="Views\Shared\SuccessfullAddition.cshtml" />
+    <Content Include="Views\Contest\GetContest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Dashboard\Models\" />
