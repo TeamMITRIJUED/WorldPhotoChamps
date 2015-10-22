@@ -242,6 +242,8 @@
     <Content Include="Views\Shared\SuccessfullAddition.cshtml" />
     <Content Include="Views\Contest\GetContest.cshtml" />
     <Content Include="Views\Users\ViewProfile.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\ApplyToContest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Dashboard\Models\" />

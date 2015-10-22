@@ -26,5 +26,11 @@ namespace Champ.App.Controllers
         {
             return View();
         }
+
+        [Authorize]
+        public ActionResult ApplyToContest()
+        {
+            return View();
+        }
     }
 }
