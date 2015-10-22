@@ -50,7 +50,9 @@ namespace Champ.App.Controllers
                     CreatorId = loggedUserId,
                     CreatenOn = DateTime.Now,
                     ClosesOn = contest.ClosesOn,
-                    NumberOfAllowedParticipants = contest.NumberOfAllowedParticipants
+                    NumberOfAllowedParticipants = contest.NumberOfAllowedParticipants,
+                    ParticipationStrategy = contest.ParticipationStrategy
+                    
                 };
 
                 user.CreatedContests.Add(newContest);
@@ -68,7 +70,7 @@ namespace Champ.App.Controllers
 
             if (searchedContest == null)
             {
-                return HttpNotFound();
+                return View("Error");
             }
             var contest = new ContestViewModel()
             {
@@ -76,7 +78,8 @@ namespace Champ.App.Controllers
                 Description = searchedContest.Description,
                 CreatenOn = searchedContest.CreatenOn,
                 ClosesOn = searchedContest.ClosesOn,
-                NumberOfAllowedParticipants = searchedContest.NumberOfAllowedParticipants
+                NumberOfAllowedParticipants = searchedContest.NumberOfAllowedParticipants,
+                ParticipationStrategy = searchedContest.ParticipationStrategy
             };
 
             return View(contest);
@@ -93,7 +96,7 @@ namespace Champ.App.Controllers
             {
                 var contests = this.Data.Contests.All()
                  .OrderByDescending(c => c.CreatenOn)
-                 .Take(10)
+                 .Take(6)
                  .Select(c => new ContestViewModel()
                  {
                      Title = c.Title,
@@ -107,14 +110,15 @@ namespace Champ.App.Controllers
             {
                 var contests = this.Data.Contests.All()
                 .OrderByDescending(c => c.CreatenOn)
-                .Take(10)
+                .Take(6)
                 .Select(c => new ContestViewModel()
                 {
                     Title = c.Title,
                     Description = c.Description,
                     CountOfParticipants = c.Participants.Count,
                     ClosesOn = c.ClosesOn,
-                    NumberOfAllowedParticipants = c.NumberOfAllowedParticipants
+                    NumberOfAllowedParticipants = c.NumberOfAllowedParticipants,
+                    ParticipationStrategy = c.ParticipationStrategy
                 }).ToList();
                 return View("ViewLoggedUser", contests);
             }

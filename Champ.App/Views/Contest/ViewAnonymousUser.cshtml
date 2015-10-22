@@ -3,10 +3,10 @@
 <h2>Contests</h2>
 @foreach (var contest in Model)
 {
-    <div class="container">
-        <div class="well well-sm">Title: @contest.Title</div>
+    <div class="well well-lg" style="border: 1px solid gray">
+        <div>Title: @contest.Title</div>
 
-        <div class="well well-sm">Description: @contest.Description </div>
+        <div>Description: @contest.Description </div>
     </div>
     <br/>
 }

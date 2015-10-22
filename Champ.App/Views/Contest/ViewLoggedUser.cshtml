@@ -6,14 +6,15 @@
 {
     <div class="well well-bg" style="border: 1px solid gray">
         <div><strong>Title: </strong>@contest.Title</div>
-
         <div><strong>Description: </strong>@contest.Description </div>
-
         <div><strong>Count of participants: </strong> @contest.CountOfParticipants</div>
-
         <div><strong>Number of Allowed participants: </strong>@contest.NumberOfAllowedParticipants </div>
-
         <div><strong>Closes on: </strong>@contest.ClosesOn</div>
+        <div><strong>Participation Strategy: </strong>@contest.ParticipationStrategy</div>
+        @if (contest.ParticipationStrategy == 0)
+        {
+            <button class="btn btn-group">Participate</button>
+        }
     </div>
     <br/>
 }
