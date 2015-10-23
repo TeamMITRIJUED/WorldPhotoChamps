@@ -4,7 +4,7 @@
 @foreach (var contest in Model)
 {
     <div class="well well-lg" style="border: 1px solid gray">
-        <div>Title: @contest.Title</div>
+        <div>@Html.ActionLink(contest.Title, "GetContest", "Contest", new {Id = contest.Id}, new {title = "Go to contest"})</div>
 
         <div>Description: @contest.Description </div>
     </div>

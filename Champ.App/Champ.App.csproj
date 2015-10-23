@@ -251,6 +251,7 @@
     <Content Include="Views\Users\ViewProfile.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Contest\GetContestToAnonymousUser.cshtml" />
+    <Content Include="Views\Contest\PastContests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Dashboard\Models\" />

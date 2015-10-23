@@ -53,7 +53,7 @@ namespace Champ.App.Controllers
                     ClosesOn = contest.ClosesOn,
                     NumberOfAllowedParticipants = contest.NumberOfAllowedParticipants,
                     ParticipationStrategy = contest.ParticipationStrategy
-                    
+
                 };
 
                 user.CreatedContests.Add(newContest);
@@ -89,14 +89,15 @@ namespace Champ.App.Controllers
 
         public ActionResult ViewContests()
         {
-            
+
             var loggedUserId = User.Identity.GetUserId();
             var user = this.Data.Users.All().FirstOrDefault(u => u.Id == loggedUserId);
-            
+
 
             if (user == null)
             {
                 var contests = this.Data.Contests.All()
+                 .Where(c => c.ClosesOn > DateTime.Now)
                  .OrderByDescending(c => c.CreatenOn)
                  .Take(10)
                  .Select(c => new ContestViewModel()
@@ -104,14 +105,15 @@ namespace Champ.App.Controllers
                      Id = c.Id,
                      Title = c.Title,
                      Description = c.Description,
-                    
+
                  }).ToList();
-                
+
                 return View("ViewAnonymousUser", contests);
             }
             else
             {
                 var contests = this.Data.Contests.All()
+                .Where(c => c.ClosesOn > DateTime.Now)
                 .OrderByDescending(c => c.CreatenOn)
                 .Take(10)
                 .Select(c => new ContestViewModel()
@@ -127,6 +129,17 @@ namespace Champ.App.Controllers
                 }).ToList();
                 return View("ViewLoggedUser", contests);
             }
+        }
+
+        public ActionResult PastContests()
+        {
+            var contests = this.Data.Contests.All()
+                .Where(c => c.ClosesOn <= DateTime.Now)
+                .OrderByDescending(c => c.ClosesOn)
+                .ProjectTo<ContestViewModel>()
+                .ToList();
+
+            return View(contests);
         }
 
     }
