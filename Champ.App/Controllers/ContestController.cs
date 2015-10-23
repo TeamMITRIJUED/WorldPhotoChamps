@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Champ.App.Models;
 using Champ.Models;
 using Microsoft.AspNet.Identity;
+using AutoMapper.QueryableExtensions;
 
 namespace Champ.App.Controllers
 {
@@ -68,42 +69,22 @@ namespace Champ.App.Controllers
         {
             var loggedUserId = User.Identity.GetUserId();
             var user = this.Data.Users.All().FirstOrDefault(u => u.Id == loggedUserId);
-            var searchedContest = this.Data.Contests.Find(id);
+            var searchedContest = this.Data.Contests.All()
+                .Where(c => c.Id == id)
+                .ProjectTo<ContestViewModel>()
+                .FirstOrDefault();
+
+            if (searchedContest == null)
+            {
+                return View("Error");
+            }
 
             if (user != null)
             {
-                if (searchedContest == null)
-                {
-                    return View("Error");
-                }
-                var contest = new ContestViewModel()
-                {
-                    Id = searchedContest.Id,
-                    Title = searchedContest.Title,
-                    Description = searchedContest.Description,
-                    CreatenOn = searchedContest.CreatenOn,
-                    ClosesOn = searchedContest.ClosesOn,
-                    NumberOfAllowedParticipants = searchedContest.NumberOfAllowedParticipants,
-                    ParticipationStrategy = searchedContest.ParticipationStrategy,
-                    HasParticipated = searchedContest.Participants.Any(p => p.Id == loggedUserId)
-                };
-
-                return View(contest);
+                return View("GetContestToLoggedUser", searchedContest);
             }
-            else
-            {
-                if (searchedContest == null)
-                {
-                    return View("Error");
-                }
-                var contest = new ContestViewModel()
-                {
-                    Title = searchedContest.Title,
-                    Description = searchedContest.Description
-                };
 
-                return View(contest);
-            }
+            return View("GetContestToAnonymousUser", searchedContest);
         }
 
         public ActionResult ViewContests()

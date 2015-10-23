@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Champ.App.Infrastructure.Mapping;
 using Champ.Models;
 using Champ.Models.Enums;
 
 namespace Champ.App.Models
 {
-    public class ContestViewModel
+    public class ContestViewModel : IMapFrom<Contest>
     {
         public int Id { get; set; }
 
