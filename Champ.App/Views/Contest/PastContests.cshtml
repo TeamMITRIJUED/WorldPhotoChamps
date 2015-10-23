@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "PastContests";
+}
+
+@using Champ.App.Models
+@model ICollection<ContestViewModel>
+
+    <h2>PastContests</h2>
+
+    @foreach (var contest in Model)
+    {
+        <div>
+            @Html.ActionLink(contest.Title, "GetContest", "Contest",
+            new { Id = contest.Id },
+            new { title = "Go to contest", @class = "btn btn-primary btn-lg" })
+        </div>
+        <div>
+            @contest.Description
+        </div>
+            @contest.CountOfParticipants
+        <div></div>
+    }
+

@@ -1,5 +1,4 @@
-﻿
-namespace Champ.App.Controllers
+﻿namespace Champ.App.Controllers
 {
     using System.Web.Mvc;
     using Data;

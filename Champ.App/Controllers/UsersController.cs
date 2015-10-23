@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using System.Web;
-using Champ.App.Models;
-using Microsoft.AspNet.Identity;
-
-namespace Champ.App.Controllers
+﻿namespace Champ.App.Controllers
 {
+    using System.Linq;
+    using System.Web;
+    using Microsoft.AspNet.Identity;
     using System.Web.Mvc;
+
+    using Models;
 
     public class UsersController : BaseController
     {

@@ -23,16 +23,16 @@ namespace Champ.Data.Migrations
                 roleManager.Create(new IdentityRole("Admin"));
             }
 
-            if (!context.Users.Any(u => u.UserName == "admin@admin.com"))
+            if (!context.Users.Any(u => u.UserName == resources.AdminName))
             {
                 var userManager = new UserManager<User>(new UserStore<User>(context));
                 var admin = new User
                 {
-                    UserName = "admin@admin.com",
-                    Email = "admin@admin.com"
+                    UserName = resources.AdminName,
+                    Email = resources.AdminEmail
                 };
 
-                userManager.Create(admin, "adm1nsamaz");
+                userManager.Create(admin, resources.AdminPassword);
                 userManager.AddToRole(admin.Id, "Admin");
             }
         }
