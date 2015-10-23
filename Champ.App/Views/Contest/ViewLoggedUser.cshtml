@@ -13,7 +13,7 @@
         <div><strong>Participation Strategy: </strong>@contest.ParticipationStrategy</div>
         @if (contest.ParticipationStrategy == 0 && !contest.HasParticipated)
         {
-            @Html.ActionLink("Participate", "ApplyToContest", "Users", new {Id = contest.Id}, new {title = "Participate"})
+            @Html.ActionLink("Participate", "ApplyToContest", "Users", new {Id = contest.Id}, new {@class = "btn btn-primary", title = "Participate"})
         }
     </div>
     <br/>

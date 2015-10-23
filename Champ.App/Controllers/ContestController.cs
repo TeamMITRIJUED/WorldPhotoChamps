@@ -66,23 +66,44 @@ namespace Champ.App.Controllers
 
         public ActionResult GetContest(int id)
         {
+            var loggedUserId = User.Identity.GetUserId();
+            var user = this.Data.Users.All().FirstOrDefault(u => u.Id == loggedUserId);
             var searchedContest = this.Data.Contests.Find(id);
 
-            if (searchedContest == null)
+            if (user != null)
             {
-                return View("Error");
-            }
-            var contest = new ContestViewModel()
-            {
-                Title = searchedContest.Title,
-                Description = searchedContest.Description,
-                CreatenOn = searchedContest.CreatenOn,
-                ClosesOn = searchedContest.ClosesOn,
-                NumberOfAllowedParticipants = searchedContest.NumberOfAllowedParticipants,
-                ParticipationStrategy = searchedContest.ParticipationStrategy
-            };
+                if (searchedContest == null)
+                {
+                    return View("Error");
+                }
+                var contest = new ContestViewModel()
+                {
+                    Id = searchedContest.Id,
+                    Title = searchedContest.Title,
+                    Description = searchedContest.Description,
+                    CreatenOn = searchedContest.CreatenOn,
+                    ClosesOn = searchedContest.ClosesOn,
+                    NumberOfAllowedParticipants = searchedContest.NumberOfAllowedParticipants,
+                    ParticipationStrategy = searchedContest.ParticipationStrategy,
+                    HasParticipated = searchedContest.Participants.Any(p => p.Id == loggedUserId)
+                };
 
-            return View(contest);
+                return View(contest);
+            }
+            else
+            {
+                if (searchedContest == null)
+                {
+                    return View("Error");
+                }
+                var contest = new ContestViewModel()
+                {
+                    Title = searchedContest.Title,
+                    Description = searchedContest.Description
+                };
+
+                return View(contest);
+            }
         }
 
         public ActionResult ViewContests()
@@ -96,7 +117,7 @@ namespace Champ.App.Controllers
             {
                 var contests = this.Data.Contests.All()
                  .OrderByDescending(c => c.CreatenOn)
-                 .Take(6)
+                 .Take(10)
                  .Select(c => new ContestViewModel()
                  {
                      Id = c.Id,
@@ -111,7 +132,7 @@ namespace Champ.App.Controllers
             {
                 var contests = this.Data.Contests.All()
                 .OrderByDescending(c => c.CreatenOn)
-                .Take(6)
+                .Take(10)
                 .Select(c => new ContestViewModel()
                 {
                     Id = c.Id,
