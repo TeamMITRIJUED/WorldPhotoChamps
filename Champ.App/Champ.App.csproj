@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -169,6 +173,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Mapping\AutoMapperConfig.cs" />
+    <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
+    <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContestViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -240,9 +247,10 @@
     <Content Include="Views\Contest\ViewAnonymousUser.cshtml" />
     <Content Include="Views\Contest\AddContest.cshtml" />
     <Content Include="Views\Shared\SuccessfullAddition.cshtml" />
-    <Content Include="Views\Contest\GetContest.cshtml" />
+    <Content Include="Views\Contest\GetContestToLoggedUser.cshtml" />
     <Content Include="Views\Users\ViewProfile.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Contest\GetContestToAnonymousUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Dashboard\Models\" />
