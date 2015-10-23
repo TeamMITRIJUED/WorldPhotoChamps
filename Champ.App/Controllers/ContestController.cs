@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Champ.App.Models;
-using Champ.Models;
-using Microsoft.AspNet.Identity;
-using AutoMapper.QueryableExtensions;
-
-namespace Champ.App.Controllers
+﻿namespace Champ.App.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Web.Mvc;
+    using Microsoft.AspNet.Identity;
+    using AutoMapper.QueryableExtensions;
+
+    using Models;
+    using Champ.Models;
+
     public class ContestController : BaseController
     {
         // GET: Contest
