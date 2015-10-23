@@ -45,5 +45,10 @@ namespace Champ.App.Controllers
 
             return RedirectToAction("ViewContests", "Contest");
         }
+
+        public ActionResult InviteToContest()
+        {
+            
+        }
     }
 }
