@@ -68,6 +68,24 @@
         {
             var loggedUserId = User.Identity.GetUserId();
             var user = this.Data.Users.All().FirstOrDefault(u => u.Id == loggedUserId);
+            var contest = this.Data.Contests.Find(id);
+
+            if (contest.Participants.Any(p => p.Id == loggedUserId))
+            {
+                var contestToReturn = new ContestParticipantViewModel()
+                {
+                    Id = contest.Id,
+                    Title = contest.Title,
+                    Description = contest.Description,
+                    Creator = contest.Creator.UserName,
+                    CreatedOn = contest.CreatenOn,
+                    ClosesOn = contest.ClosesOn,
+                    Pictures = contest.Pictures.Count
+                };
+                return View("ViewContestParticipatingUser", contestToReturn);
+            }
+
+
             var searchedContest = this.Data.Contests.All()
                 .Where(c => c.Id == id)
                 .ProjectTo<ContestViewModel>()
@@ -77,6 +95,8 @@
             {
                 return View("Error");
             }
+
+            
 
             if (user != null)
             {

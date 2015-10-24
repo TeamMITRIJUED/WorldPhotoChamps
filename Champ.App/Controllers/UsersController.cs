@@ -46,9 +46,10 @@
             return RedirectToAction("ViewContests", "Contest");
         }
 
-        public ActionResult InviteToContest()
-        {
-            
-        }
+
+        //public ActionResult InviteToContest()
+        //{
+
+        //}
     }
 }
