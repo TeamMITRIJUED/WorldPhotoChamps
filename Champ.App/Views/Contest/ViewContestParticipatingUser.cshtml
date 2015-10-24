@@ -20,5 +20,12 @@
         <div><strong>Finishes: </strong>@Model.ClosesOn</div>
         <div><strong>Photos: </strong>@Model.Pictures</div>
     </div>
-    @Html.ActionLink("Add a photo", "")
+
+    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Add a photo</button>
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            @Html.Partial("AddPhoto")
+        </div>
+    </div>
 </div>

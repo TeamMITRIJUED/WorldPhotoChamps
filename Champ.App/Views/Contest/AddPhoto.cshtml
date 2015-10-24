@@ -1,0 +1,29 @@
+﻿@using Champ.App.Models
+@model ContestParticipantViewModel
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">@Model.Title</h4>
+    </div>
+    <div class="modal-body">
+        @if (Model.HasAddedPhoto)
+        {
+            <p>You have already added a photo for this contest</p>
+        }
+        else
+        {
+            using (@Html.BeginForm("Add", "Photos", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <p>Add photo :</p>
+                @Html.TextArea("Location")
+                @Html.Hidden("ContestId", Model.Id)
+                <input type="submit" class="btn btn-group-sm" value="Add" />
+            }
+        }
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+</div>

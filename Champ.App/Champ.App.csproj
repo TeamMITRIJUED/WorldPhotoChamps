@@ -169,6 +169,7 @@
     <Compile Include="Controllers\ContestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PhotosController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -180,6 +181,7 @@
     <Compile Include="Models\ContestViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ContestParticipantViewModel.cs" />
+    <Compile Include="Models\PhotoViewModel.cs" />
     <Compile Include="Models\UserProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -254,9 +256,11 @@
     <Content Include="Views\Contest\GetContestToAnonymousUser.cshtml" />
     <Content Include="Views\Contest\PastContests.cshtml" />
     <Content Include="Views\Contest\ViewContestParticipatingUser.cshtml" />
+    <Content Include="Views\Contest\AddPhoto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Dashboard\Models\" />
+    <Folder Include="Views\Photos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

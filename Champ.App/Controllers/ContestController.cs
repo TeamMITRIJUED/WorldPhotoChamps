@@ -70,7 +70,7 @@
             var user = this.Data.Users.All().FirstOrDefault(u => u.Id == loggedUserId);
             var contest = this.Data.Contests.Find(id);
 
-            if (contest.Participants.Any(p => p.Id == loggedUserId))
+            if (loggedUserId != null && contest.Participants.Any(p => p.Id == loggedUserId))
             {
                 var contestToReturn = new ContestParticipantViewModel()
                 {
@@ -80,7 +80,8 @@
                     Creator = contest.Creator.UserName,
                     CreatedOn = contest.CreatenOn,
                     ClosesOn = contest.ClosesOn,
-                    Pictures = contest.Pictures.Count
+                    Pictures = contest.Pictures.Count,
+                    HasAddedPhoto = contest.Pictures.Any(p => p.AuthorId == loggedUserId)
                 };
                 return View("ViewContestParticipatingUser", contestToReturn);
             }
@@ -95,8 +96,6 @@
             {
                 return View("Error");
             }
-
-            
 
             if (user != null)
             {
@@ -160,6 +159,5 @@
 
             return View(contests);
         }
-
     }
 }

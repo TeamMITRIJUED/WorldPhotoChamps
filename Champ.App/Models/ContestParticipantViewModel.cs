@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Policy;
 using System.Web;
 using Champ.Models;
 using Champ.Models.Enums;
@@ -24,6 +25,8 @@ namespace Champ.App.Models
         public DateTime? ClosesOn { get; set; }
 
         public int Pictures { get; set; }
+
+        public bool HasAddedPhoto { get; set; }
 
         public static Expression<Func<Contest, ContestParticipantViewModel>> Create
         {
