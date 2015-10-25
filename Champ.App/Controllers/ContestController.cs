@@ -52,7 +52,6 @@
                     ClosesOn = contest.ClosesOn,
                     NumberOfAllowedParticipants = contest.NumberOfAllowedParticipants,
                     ParticipationStrategy = contest.ParticipationStrategy
-
                 };
 
                 user.CreatedContests.Add(newContest);

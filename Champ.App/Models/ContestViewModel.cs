@@ -3,10 +3,12 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using Infrastructure.Mapping;
+    using AutoMapper;
+
     using Champ.Models;
     using Champ.Models.Enums;
 
-    public class ContestViewModel : IMapFrom<Contest>
+    public class ContestViewModel : IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -33,5 +35,11 @@
         public int CountOfParticipants { get; set; }
 
         public bool HasParticipated { get; set; }
+
+        public void CreateMappings(IConfiguration configuration)
+        {
+            configuration.CreateMap<Contest, ContestViewModel>()
+                .ForMember(c => c.CountOfParticipants, opt => opt.MapFrom(contest => contest.Participants.Count));
+        }
     }
 }

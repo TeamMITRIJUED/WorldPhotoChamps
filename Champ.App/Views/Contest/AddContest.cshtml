@@ -17,7 +17,7 @@
 
     <div class="form-group">
         @Html.LabelFor(m => m.ClosesOn)
-        @Html.TextBoxFor(m => m.ClosesOn, htmlAttributes: new { @class = "form-control", @placeholder = "MM/dd/yyyy" })
+        @Html.TextBoxFor(m => m.ClosesOn, htmlAttributes: new { type = "date", @class = "form-control", @placeholder = "MM/dd/yyyy" })
     </div>
 
     <div class="form-group">
