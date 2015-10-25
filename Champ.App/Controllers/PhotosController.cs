@@ -1,9 +1,7 @@
-﻿using System;
-using System.Web;
-using Microsoft.AspNet.Identity;
-
-namespace Champ.App.Controllers
+﻿namespace Champ.App.Controllers
 {
+    using System;
+    using Microsoft.AspNet.Identity;
     using System.Web.Mvc;
 
     using Models;

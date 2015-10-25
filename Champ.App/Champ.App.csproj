@@ -256,7 +256,7 @@
     <Content Include="Views\Contest\GetContestToAnonymousUser.cshtml" />
     <Content Include="Views\Contest\PastContests.cshtml" />
     <Content Include="Views\Contest\ViewContestParticipatingUser.cshtml" />
-    <Content Include="Views\Contest\AddPhoto.cshtml" />
+    <Content Include="Views\Contest\_AddPhoto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Dashboard\Models\" />
