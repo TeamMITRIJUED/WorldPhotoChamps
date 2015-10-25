@@ -27,7 +27,22 @@
 
     <div class="form-group">
         @Html.LabelFor(m => m.ParticipationStrategy)
-        @Html.TextBoxFor(m => m.ParticipationStrategy, htmlAttributes: new { @class = "form-control" })
+        @Html.EnumDropDownListFor(m => m.ParticipationStrategy, new {@class = "form-control"})
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.VotingStrategy)
+        @Html.EnumDropDownListFor(m => m.VotingStrategy, new {@class = "form-control"})
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.RewardStrategy)
+        @Html.EnumDropDownListFor(m => m.RewardStrategy, new {@class = "form-control"})
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.DeadlineStrategy)
+        @Html.EnumDropDownListFor(m => m.DeadlineStrategy, new { @class = "form-control" })
     </div>
 
     <div>

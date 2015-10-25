@@ -40,6 +40,7 @@
         {
             configuration.CreateMap<Contest, ContestViewModel>()
                 .ForMember(c => c.CountOfParticipants, opt => opt.MapFrom(contest => contest.Participants.Count));
+
         }
     }
 }

@@ -51,7 +51,10 @@
                     CreatenOn = DateTime.Now,
                     ClosesOn = contest.ClosesOn,
                     NumberOfAllowedParticipants = contest.NumberOfAllowedParticipants,
-                    ParticipationStrategy = contest.ParticipationStrategy
+                    ParticipationStrategy = contest.ParticipationStrategy,
+                    DeadlineStrategy = contest.DeadlineStrategy,
+                    RewardStrategy = contest.RewardStrategy,
+                    VotingStrategy = contest.VotingStrategy,
                 };
 
                 user.CreatedContests.Add(newContest);
