@@ -1,0 +1,23 @@
+﻿@using Champ.App.Models
+@model UserProfileViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div id="sidebar" class="well sidebar-nav">
+                <h5>
+                    <i class="glyphicon glyphicon-user"></i>
+                    <small><b>@Model.Username</b></small>
+                </h5>
+                <ul class="nav nav-pills nav-stacked">
+                    <li>@Html.ActionLink("My Contests", "ViewContests", "Contest")</li>
+                    <li><a href="#">My Photos</a></li>
+                    <li>@Html.ActionLink("Create a contest", "AddContest", "Contest")</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <!-- Content Here -->
+        </div>
+    </div>
+</div>

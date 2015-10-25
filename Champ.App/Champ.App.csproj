@@ -257,6 +257,8 @@
     <Content Include="Views\Contest\PastContests.cshtml" />
     <Content Include="Views\Contest\ViewContestParticipatingUser.cshtml" />
     <Content Include="Views\Contest\_AddPhoto.cshtml" />
+    <Content Include="Views\Shared\_UserAsideMenu.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ContestViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Dashboard\Models\" />
