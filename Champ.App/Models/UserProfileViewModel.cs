@@ -14,6 +14,8 @@
 
         public int WonContests { get; set; }
 
+        public int UploadedPhotos { get; set; }    
+
         public static Expression<Func<User, UserProfileViewModel>> Create
         {
             get
@@ -23,7 +25,8 @@
                     Username = u.UserName,
                     OwnContest = u.CreatedContests.Count,
                     ParticipatedInContests = u.ParticipatedIn.Count,
-                    WonContests = u.WonContests.Count
+                    WonContests = u.WonContests.Count,
+                    UploadedPhotos = u.UploadedPictures.Count
                 };
             }
         }
