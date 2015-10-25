@@ -24,7 +24,12 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Dashboard", null, null, new { area = "Dashboard" }, htmlAttributes: new { title = "Dashboard" })
+                        }
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

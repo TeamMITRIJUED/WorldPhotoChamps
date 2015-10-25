@@ -17,7 +17,8 @@
             context.MapRoute(
                 "Dashboard_default",
                 "Dashboard/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { Controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new[] { "Champ.App.Areas.Dashboard.Controllers" }
             );
         }
     }

@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Champ.App.Models.UserProfileViewModel>
+
+@foreach (var user in Model)
+{
+    <div class="container">
+        <h3>@user.Username</h3>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>Participates in: @user.ParticipatedInContests</p>
+                <p>Created: @user.OwnContest</p>
+                <p>Pictures uploaded: @user.UploadedPhotos</p>
+            </div>
+        </div>
+    </div>
+}

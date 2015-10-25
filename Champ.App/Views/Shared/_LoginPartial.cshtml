@@ -1,16 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    if (User.IsInRole("Admin"))
-    {
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                @Html.ActionLink("Dashboard", "Show", "ContestManagement", new { area = "Dashboard" }, htmlAttributes: new { title = "Dashboard" })
-            </li>
-        </ul>
-    }
-
-
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
