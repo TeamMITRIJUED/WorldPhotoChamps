@@ -121,7 +121,7 @@
     <value>admin@admin.com</value>
   </data>
   <data name="AdminName" xml:space="preserve">
-    <value>admin@admin.com</value>
+    <value>admin</value>
   </data>
   <data name="AdminPassword" xml:space="preserve">
     <value>adm1nsamaz</value>

@@ -46,10 +46,30 @@
             return RedirectToAction("ViewContests", "Contest");
         }
 
-
-        //public ActionResult InviteToContest()
+        //[Authorize]
+        //public ActionResult InviteToContest(int id)
         //{
 
         //}
+
+        public ActionResult GetUser(string username)
+        {
+            var user = this.Data.Users.All()
+                .Where(u => u.UserName == username)
+                .Select(UserProfileViewModel.Create)
+                .FirstOrDefault();
+
+            return View(user);
+        }
+
+        public ActionResult GetAllUsers()
+        {
+            var users = this.Data.Users.All()
+                .Take(10)
+                .Select(UserProfileViewModel.Create)
+                .ToList();
+
+            return View("GetAllUsers", users);
+        }
     }
 }

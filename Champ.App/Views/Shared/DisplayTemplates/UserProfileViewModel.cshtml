@@ -1,0 +1,15 @@
+﻿@using Champ.App.Models
+@model UserProfileViewModel
+
+<h2>@Model.Username</h2>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="well well-lg" style="border: 1px solid gray">
+            <p>Own contests: @Model.OwnContest</p>
+            <p>Photos submitted: @Model.UploadedPhotos</p>
+            <p>Particiated in contests: @Model.ParticipatedInContests</p>
+            <p>Contests won: @Model.WonContests</p>
+        </div>
+        <button type ="button" class="btn btn-info btn-sm">Invite</button>
+    </div>
+</div>

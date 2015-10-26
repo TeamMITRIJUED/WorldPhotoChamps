@@ -1,0 +1,8 @@
+﻿@using Champ.App.Models
+@model IEnumerable<UserProfileViewModel>
+    
+@foreach (var user in Model)
+{
+    @Html.DisplayFor(u => user)
+}
+
