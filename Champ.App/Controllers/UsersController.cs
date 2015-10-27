@@ -46,11 +46,19 @@
             return RedirectToAction("ViewContests", "Contest");
         }
 
-        //[Authorize]
-        //public ActionResult InviteToContest(int id)
-        //{
+        [Authorize]
+        public ActionResult InviteToContest(int invitedUserId, int contestId)
+        {
+            //var loggedUserId = this.User.Identity.GetUserId();
+            var contest = this.Data.Contests.Find(contestId);
+            var invitedUser = this.Data.Users.Find(invitedUserId);
 
-        //}
+            invitedUser.ParticipatedIn.Add(contest);
+            contest.Participants.Add(invitedUser);
+            this.Data.SaveChanges();
+
+            return RedirectToAction("GetContest", "Contest", contest);
+        }
 
         public ActionResult GetUser(string username)
         {
@@ -69,7 +77,7 @@
                 .Select(UserProfileViewModel.Create)
                 .ToList();
 
-            return View("GetAllUsers", users);
+            return View(users);
         }
     }
 }

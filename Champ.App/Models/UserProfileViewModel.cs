@@ -6,6 +6,8 @@
 
     public class UserProfileViewModel
     {
+        public string UserId { get; set; }
+
         public string Username { get; set; }
 
         public int OwnContest { get; set; }
@@ -22,6 +24,7 @@
             {
                 return u => new UserProfileViewModel
                 {
+                    UserId = u.Id,
                     Username = u.UserName,
                     OwnContest = u.CreatedContests.Count,
                     ParticipatedInContests = u.ParticipatedIn.Count,
