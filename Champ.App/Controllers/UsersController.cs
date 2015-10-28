@@ -1,4 +1,6 @@
-﻿namespace Champ.App.Controllers
+﻿using AutoMapper.QueryableExtensions;
+
+namespace Champ.App.Controllers
 {
     using System.Linq;
     using System.Web;
@@ -84,6 +86,34 @@
                 .ToList();
 
             return View(users);
+        }
+
+        [Authorize]
+        public ActionResult MyContests()
+        {
+            var loggedUserId = this.User.Identity.GetUserId();
+            var userContests = this.Data.Contests.All()
+                .Where(c => c.CreatorId == loggedUserId)
+                .Take(6)
+                .OrderByDescending(c => c.ClosesOn)
+                .ProjectTo<ContestViewModel>()
+                .ToList();
+
+            return View(userContests);
+        }
+
+        public ActionResult SearchUsers(string username)
+        {
+            username = username.ToLower();
+            var model = new SearchViewModel
+            {
+                Users = this.Data.Users.All()
+                    .Where(u => u.UserName.ToLower().Contains(username))
+                    .Select(UserProfileViewModel.Create)
+                    .ToList()
+            };
+
+            return this.PartialView("_UserSearchPartial", model);
         }
     }
 }
