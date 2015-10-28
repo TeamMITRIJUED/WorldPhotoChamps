@@ -22,12 +22,6 @@
             return View(userProfile);
         }
 
-        [HttpGet]
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [Authorize]
         public ActionResult ApplyToContest(int id)
         {
@@ -47,17 +41,29 @@
         }
 
         [Authorize]
-        public ActionResult InviteToContest(int invitedUserId, int contestId)
+        public ActionResult InviteToContest(string invitedUsername, int contestId)
         {
-            //var loggedUserId = this.User.Identity.GetUserId();
+            var loggedUserId = this.User.Identity.GetUserId();
             var contest = this.Data.Contests.Find(contestId);
-            var invitedUser = this.Data.Users.Find(invitedUserId);
+
+            if (loggedUserId != contest.CreatorId)
+            {
+                throw new HttpException();
+            }
+
+            var invitedUser = this.Data.Users.All().FirstOrDefault(u => u.UserName == invitedUsername);
+
+            if (invitedUser == null)
+            {
+                throw new HttpException();
+            }
 
             invitedUser.ParticipatedIn.Add(contest);
             contest.Participants.Add(invitedUser);
             this.Data.SaveChanges();
 
             return RedirectToAction("GetContest", "Contest", contest);
+
         }
 
         public ActionResult GetUser(string username)
@@ -67,7 +73,7 @@
                 .Select(UserProfileViewModel.Create)
                 .FirstOrDefault();
 
-            return View(user);
+            return View("_ViewUser", user);
         }
 
         public ActionResult GetAllUsers()
