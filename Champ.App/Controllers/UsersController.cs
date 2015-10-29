@@ -46,11 +46,6 @@
             return RedirectToAction("ViewContests", "Contest");
         }
 
-        //[Authorize]
-        //public ActionResult InviteToContest(int id)
-        //{
-
-        //}
 
         public ActionResult GetUser(string username)
         {
