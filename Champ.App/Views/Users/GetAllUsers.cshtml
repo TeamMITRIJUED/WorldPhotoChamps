@@ -3,6 +3,6 @@
     
 @foreach (var user in Model)
 {
-    @Html.DisplayFor(u => user)
+    @Html.Partial("_ViewUser", user)
 }
 

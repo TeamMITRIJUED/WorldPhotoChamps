@@ -1,0 +1,17 @@
+﻿@model Champ.App.Models.SearchViewModel
+
+@foreach (var user in Model.Users)
+{
+    <div class="row">
+        <div class="col-sm-8">
+            <h4>@user.Username</h4>
+            <div class="well well-lg" style="border: 1px solid gray">
+                <p>Particiated in contests: @user.ParticipatedInContests</p>
+                <p>Contests won: @user.WonContests</p>
+            </div>
+            <div>
+                <p>@Html.ActionLink("Invite", "InviteToContest", "Users")</p>
+            </div>
+        </div>
+    </div>
+}

@@ -1,4 +1,6 @@
-﻿namespace Champ.App.Controllers
+﻿using AutoMapper.QueryableExtensions;
+
+namespace Champ.App.Controllers
 {
     using System.Linq;
     using System.Web;
@@ -18,14 +20,8 @@
                 .Where(u => u.Id == loggedUserId)
                 .Select(UserProfileViewModel.Create)
                 .FirstOrDefault();
-            
-            return View(userProfile);
-        }
 
-        [HttpGet]
-        public ActionResult Index()
-        {
-            return View();
+            return View(userProfile);
         }
 
         [Authorize]
@@ -46,6 +42,31 @@
             return RedirectToAction("ViewContests", "Contest");
         }
 
+        [Authorize]
+        public ActionResult InviteToContest(string invitedUsername, int contestId)
+        {
+            var loggedUserId = this.User.Identity.GetUserId();
+            var contest = this.Data.Contests.Find(contestId);
+
+            if (loggedUserId != contest.CreatorId)
+            {
+                throw new HttpException();
+            }
+
+            var invitedUser = this.Data.Users.All().FirstOrDefault(u => u.UserName == invitedUsername);
+
+            if (invitedUser == null)
+            {
+                throw new HttpException();
+            }
+
+            invitedUser.ParticipatedIn.Add(contest);
+            contest.Participants.Add(invitedUser);
+            this.Data.SaveChanges();
+
+            return RedirectToAction("GetContest", "Contest", contest);
+
+        }
 
         public ActionResult GetUser(string username)
         {
@@ -54,7 +75,7 @@
                 .Select(UserProfileViewModel.Create)
                 .FirstOrDefault();
 
-            return View(user);
+            return View("_ViewUser", user);
         }
 
         public ActionResult GetAllUsers()
@@ -64,7 +85,35 @@
                 .Select(UserProfileViewModel.Create)
                 .ToList();
 
-            return View("GetAllUsers", users);
+            return View(users);
+        }
+
+        [Authorize]
+        public ActionResult MyContests()
+        {
+            var loggedUserId = this.User.Identity.GetUserId();
+            var userContests = this.Data.Contests.All()
+                .Where(c => c.CreatorId == loggedUserId)
+                .Take(6)
+                .OrderByDescending(c => c.ClosesOn)
+                .ProjectTo<ContestViewModel>()
+                .ToList();
+
+            return View(userContests);
+        }
+
+        public ActionResult SearchUsers(string username)
+        {
+            username = username.ToLower();
+            var model = new SearchViewModel
+            {
+                Users = this.Data.Users.All()
+                    .Where(u => u.UserName.ToLower().Contains(username))
+                    .Select(UserProfileViewModel.Create)
+                    .ToList()
+            };
+
+            return this.PartialView("_UserSearchPartial", model);
         }
     }
 }

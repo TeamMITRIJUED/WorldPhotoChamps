@@ -1,0 +1,26 @@
+﻿@model ICollection<Champ.App.Models.ContestViewModel>
+
+<div class="row">
+    <div class="col-md-6">
+        @foreach (var contest in Model)
+        {
+            <div class="well well-bg" style="border: 1px solid gray">
+                <h4>@contest.Title</h4>
+                <div class="well well-bg" style="border: 1px solid gray">
+                    <div><strong>Finishes: </strong>@contest.ClosesOn</div>
+                    <div>
+                        <strong>Photos: </strong>Temporary unavailable
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#inviteUsers">Invite Users</button>
+
+                <div id="inviteUsers" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        @Html.Partial("_InviteUsersPartial")
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

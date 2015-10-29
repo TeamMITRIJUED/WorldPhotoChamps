@@ -185,6 +185,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ContestParticipantViewModel.cs" />
     <Compile Include="Models\PhotoViewModel.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\UserProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -259,20 +260,22 @@
     <Content Include="Views\Shared\SuccessfullAddition.cshtml" />
     <Content Include="Views\Contest\GetContestToLoggedUser.cshtml" />
     <Content Include="Views\Users\ViewProfile.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Contest\GetContestToAnonymousUser.cshtml" />
     <Content Include="Views\Contest\PastContests.cshtml" />
     <Content Include="Views\Contest\ViewContestParticipatingUser.cshtml" />
     <Content Include="Views\Contest\_AddPhoto.cshtml" />
     <Content Include="Views\Users\_UserAsideMenu.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\ContestViewModel.cshtml" />
-    <Content Include="Views\Users\GetUser.cshtml" />
     <Content Include="Views\Users\GetAllUsers.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\UserProfileViewModel.cshtml" />
+    <Content Include="Views\Photos\GetPhotos.cshtml" />
+    <Content Include="Views\Users\_ViewUser.cshtml" />
+    <Content Include="Views\Photos\_ViewPhoto.cshtml" />
+    <Content Include="Views\Users\MyContests.cshtml" />
+    <Content Include="Views\Users\_InviteUsersPartial.cshtml" />
+    <Content Include="Views\Users\_UserSearchPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Dashboard\Models\" />
-    <Folder Include="Views\Photos\" />
+    <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
