@@ -1,5 +1,5 @@
 ﻿@using Champ.App.Models
-@model EditContestViewModel
+@model Champ.App.Models.ContestModels.EditContestViewModel
 
 <div class="modal-content">
     <div class="modal-header">
@@ -29,7 +29,7 @@
                 @Html.LabelFor(m => m.VotingStrategy)
                 @Html.EnumDropDownListFor(m => m.VotingStrategy, new {@class = "form-control"})
             </div>
-            @Html.Hidden("Id", Model.Id)
+            @Html.Hidden("Id")
             <input type="submit" class="btn btn-group-sm" value="Edit" />
         }
     </div>

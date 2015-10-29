@@ -1,16 +1,19 @@
-﻿@model Champ.App.Models.SearchViewModel
+﻿@model Champ.App.Models.SearchModels.SearchViewModel
 
 @foreach (var user in Model.Users)
 {
     <div class="row">
         <div class="col-sm-8">
-            <h4>@user.Username</h4>
             <div class="well well-lg" style="border: 1px solid gray">
-                <p>Particiated in contests: @user.ParticipatedInContests</p>
-                <p>Contests won: @user.WonContests</p>
+                <h4>@user.Username</h4>
             </div>
             <div>
-                <p>@Html.ActionLink("Invite", "InviteToContest", "Users")</p>
+                @using (@Html.BeginForm("InviteToContest", "Users", FormMethod.Post))
+                {
+                    @Html.Hidden("UserId", user.UserId)
+                    @Html.Hidden("ContestId", user.ContestId)
+                    <input type="submit" class="btn btn-group-sm" value="Invite" />
+                }
             </div>
         </div>
     </div>

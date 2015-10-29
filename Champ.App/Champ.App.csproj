@@ -180,14 +180,15 @@
     <Compile Include="Infrastructure\Mapping\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ContestViewModel.cs" />
-    <Compile Include="Models\EditContestViewModel.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\ContestParticipantViewModel.cs" />
-    <Compile Include="Models\PhotoViewModel.cs" />
-    <Compile Include="Models\SearchViewModel.cs" />
-    <Compile Include="Models\UserProfileViewModel.cs" />
+    <Compile Include="Models\AccountModels\AccountViewModels.cs" />
+    <Compile Include="Models\ContestModels\ContestViewModel.cs" />
+    <Compile Include="Models\ContestModels\EditContestViewModel.cs" />
+    <Compile Include="Models\AccountModels\ManageViewModels.cs" />
+    <Compile Include="Models\ContestModels\ContestParticipantViewModel.cs" />
+    <Compile Include="Models\PhotoModels\PhotoViewModel.cs" />
+    <Compile Include="Models\SearchModels\SearchViewModel.cs" />
+    <Compile Include="Models\UserModels\UserInvitationViewModel.cs" />
+    <Compile Include="Models\UserModels\UserProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -199,6 +200,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\AppScripts\AdminAjaxFunctions.js" />
+    <Content Include="Scripts\AppScripts\ModalHelpers.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Dashboard\Views\web.config" />

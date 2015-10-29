@@ -1,4 +1,4 @@
-﻿namespace Champ.App.Models
+﻿namespace Champ.App.Models.PhotoModels
 {
     public class PhotoViewModel
     {

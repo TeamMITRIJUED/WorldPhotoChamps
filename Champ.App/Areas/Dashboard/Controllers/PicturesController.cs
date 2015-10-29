@@ -1,4 +1,6 @@
-﻿namespace Champ.App.Areas.Dashboard.Controllers
+﻿using Champ.App.Models.PhotoModels;
+
+namespace Champ.App.Areas.Dashboard.Controllers
 {
     using System.Web.Mvc;
     using System.Linq;

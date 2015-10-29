@@ -1,4 +1,6 @@
-﻿namespace Champ.App.Controllers
+﻿using Champ.App.Models.ContestModels;
+
+namespace Champ.App.Controllers
 {
     using System;
     using System.Linq;

@@ -8,7 +8,7 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
 
-    using Models;
+    using Champ.App.Models.AccountModels;
 
     [Authorize]
     public class ManageController : Controller

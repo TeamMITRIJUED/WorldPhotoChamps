@@ -1,4 +1,6 @@
-﻿namespace Champ.App.Controllers
+﻿using Champ.App.Models.AccountModels;
+
+namespace Champ.App.Controllers
 {
     using System.Linq;
     using System.Threading.Tasks;

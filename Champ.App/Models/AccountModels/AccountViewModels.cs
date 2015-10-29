@@ -1,8 +1,8 @@
-﻿namespace Champ.App.Models
-{
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
+namespace Champ.App.Models.AccountModels
+{
     public class ExternalLoginConfirmationViewModel
     {
         [Required]

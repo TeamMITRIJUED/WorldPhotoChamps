@@ -1,10 +1,10 @@
-﻿namespace Champ.App.Models
-{
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.Owin.Security;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 
+namespace Champ.App.Models.AccountModels
+{
     public class IndexViewModel
     {
         public bool HasPassword { get; set; }

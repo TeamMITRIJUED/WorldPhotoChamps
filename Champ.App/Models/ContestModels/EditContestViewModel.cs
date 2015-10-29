@@ -1,10 +1,10 @@
-﻿namespace Champ.App.Models
-{
-    using System;
-    using Champ.Models.Enums;
-    using System.Linq.Expressions;
-    using Champ.Models;
+﻿using System;
+using System.Linq.Expressions;
+using Champ.Models;
+using Champ.Models.Enums;
 
+namespace Champ.App.Models.ContestModels
+{
     public class EditContestViewModel
     {
         public int Id { get; set; }

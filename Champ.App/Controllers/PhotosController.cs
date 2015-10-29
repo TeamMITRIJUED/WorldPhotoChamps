@@ -1,4 +1,6 @@
-﻿namespace Champ.App.Controllers
+﻿using Champ.App.Models.PhotoModels;
+
+namespace Champ.App.Controllers
 {
     using System;
     using Microsoft.AspNet.Identity;
