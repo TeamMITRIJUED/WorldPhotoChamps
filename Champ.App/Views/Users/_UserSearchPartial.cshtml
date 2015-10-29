@@ -9,7 +9,13 @@
                 <h4>@user.Username</h4>
             </div>
             <div>
-                @using (@Html.BeginForm("InviteToContest", "Users", FormMethod.Post))
+                @using (Ajax.BeginForm("InviteToContest", "Users", 
+                    new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "invitation-result"
+                    }))
                 {
                     @Html.Hidden("UserId", user.UserId)
                     @Html.Hidden("ContestId", user.ContestId)
