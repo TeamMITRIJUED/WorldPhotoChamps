@@ -1,11 +1,11 @@
-﻿using AutoMapper.QueryableExtensions;
-
-namespace Champ.App.Controllers
+﻿namespace Champ.App.Controllers
 {
     using System.Linq;
     using System.Web;
     using Microsoft.AspNet.Identity;
     using System.Web.Mvc;
+    using System.Net;
+    using AutoMapper.QueryableExtensions;
 
     using Models;
 
@@ -114,6 +114,42 @@ namespace Champ.App.Controllers
             };
 
             return this.PartialView("_UserSearchPartial", model);
+        }
+
+        [Authorize]
+        public ActionResult EditContest(EditContestViewModel model)
+        {
+            if (model == null || !this.ModelState.IsValid)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid message");
+            }
+
+            var editedContest = this.Data.Contests.Find(model.Id);
+
+            if (editedContest == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "nope.. not today");
+            }
+
+            if(model.ClosesOn != null)
+            {
+                editedContest.ClosesOn = model.ClosesOn; 
+            }
+
+            if (model.Description != null)
+            {
+                editedContest.Description = model.Description;
+            }
+
+            if (model.NumberOfAllowedParticipants != null)
+            {
+                editedContest.NumberOfAllowedParticipants = model.NumberOfAllowedParticipants;
+            }
+            
+            editedContest.VotingStrategy = model.VotingStrategy;
+            this.Data.SaveChanges();
+
+            return RedirectToAction("MyContests", "Users");
         }
     }
 }

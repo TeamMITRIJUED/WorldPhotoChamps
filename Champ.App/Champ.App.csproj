@@ -182,6 +182,7 @@
     <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContestViewModel.cs" />
+    <Compile Include="Models\EditContestViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ContestParticipantViewModel.cs" />
     <Compile Include="Models\PhotoViewModel.cs" />
@@ -272,6 +273,7 @@
     <Content Include="Views\Users\MyContests.cshtml" />
     <Content Include="Views\Users\_InviteUsersPartial.cshtml" />
     <Content Include="Views\Users\_UserSearchPartial.cshtml" />
+    <Content Include="Views\Users\_EditContest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Dashboard\Models\" />

@@ -1,6 +1,8 @@
-﻿@model ICollection<Champ.App.Models.ContestViewModel>
+﻿@using Champ.App.Models
+@model ICollection<ContestViewModel>
 
 <div class="row">
+    <h2>My Contests</h2>
     <div class="col-md-6">
         @foreach (var contest in Model)
         {
@@ -14,10 +16,17 @@
                 </div>
 
                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#inviteUsers">Invite Users</button>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#editContest">Edit Contest</button>
 
                 <div id="inviteUsers" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         @Html.Partial("_InviteUsersPartial")
+                    </div>
+                </div>
+
+                <div id="editContest" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        @Html.Partial("_EditContest", new EditContestViewModel {Id = contest.Id})
                     </div>
                 </div>
             </div>
