@@ -10,7 +10,6 @@ namespace Champ.App.Controllers
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
 
-    using Models;
     using Champ.Models;
 
     [Authorize]

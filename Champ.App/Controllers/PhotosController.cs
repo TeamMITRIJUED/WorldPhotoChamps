@@ -1,14 +1,12 @@
-﻿using Champ.App.Models.PhotoModels;
-
-namespace Champ.App.Controllers
+﻿namespace Champ.App.Controllers
 {
     using System;
     using Microsoft.AspNet.Identity;
     using System.Web.Mvc;
     using System.Linq;
 
-    using Models;
     using Champ.Models;
+    using Models.PhotoModels;
 
     public class PhotosController : BaseController
     {

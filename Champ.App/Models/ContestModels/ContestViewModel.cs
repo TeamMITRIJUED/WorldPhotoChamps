@@ -1,12 +1,12 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using AutoMapper;
-using Champ.App.Infrastructure.Mapping;
-using Champ.Models;
-using Champ.Models.Enums;
-
-namespace Champ.App.Models.ContestModels
+﻿namespace Champ.App.Models.ContestModels
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using AutoMapper;
+    using Infrastructure.Mapping;
+    using Champ.Models;
+    using Champ.Models.Enums;
+
     public class ContestViewModel : IHaveCustomMappings
     {
         public int Id { get; set; }

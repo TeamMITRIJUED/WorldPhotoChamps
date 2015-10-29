@@ -1,12 +1,10 @@
-﻿using Champ.App.Models.UserModels;
-
-namespace Champ.App.Areas.Dashboard.Controllers
+﻿namespace Champ.App.Areas.Dashboard.Controllers
 {
     using System.Web.Mvc;
     using System.Linq;
 
-    using Models;
     using App.Controllers;
+    using Models.UserModels;
 
     [Authorize(Roles = "Admin")]
     public class UsersManagementController : BaseController

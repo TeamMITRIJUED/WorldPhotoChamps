@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq.Expressions;
-using Champ.Models;
-
-namespace Champ.App.Models.UserModels
+﻿namespace Champ.App.Models.UserModels
 {
+    using System;
+    using System.Linq.Expressions;
+    using Champ.Models;
+
     public class UserProfileViewModel
     {
         public string UserId { get; set; }

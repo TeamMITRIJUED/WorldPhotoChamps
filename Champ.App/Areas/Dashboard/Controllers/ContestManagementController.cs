@@ -1,14 +1,12 @@
-﻿using Champ.App.Models.ContestModels;
-
-namespace Champ.App.Areas.Dashboard.Controllers
+﻿namespace Champ.App.Areas.Dashboard.Controllers
 {
     using System.Web.Mvc;
     using System;
     using System.Linq;
     using AutoMapper.QueryableExtensions;
 
-    using Models;
     using App.Controllers;
+    using Models.ContestModels;
 
     [Authorize(Roles = "Admin")]
     public class ContestManagementController : BaseController

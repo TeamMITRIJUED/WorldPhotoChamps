@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Champ.App.Models.ContestModels
+﻿namespace Champ.App.Models.ContestModels
 {
+    using System;
+
     public class ContestParticipantViewModel : ContestViewModel
     {
         public string Creator { get; set; }

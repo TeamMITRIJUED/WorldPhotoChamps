@@ -1,8 +1,4 @@
-﻿using Champ.App.Models.ContestModels;
-using Champ.App.Models.SearchModels;
-using Champ.App.Models.UserModels;
-
-namespace Champ.App.Controllers
+﻿namespace Champ.App.Controllers
 {
     using System.Linq;
     using System.Web;
@@ -11,7 +7,9 @@ namespace Champ.App.Controllers
     using System.Net;
     using AutoMapper.QueryableExtensions;
 
-    using Models;
+    using Models.ContestModels;
+    using Models.SearchModels;
+    using Models.UserModels;
 
     public class UsersController : BaseController
     {

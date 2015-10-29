@@ -1,12 +1,11 @@
-﻿using Champ.App.Models.PhotoModels;
-
-namespace Champ.App.Areas.Dashboard.Controllers
+﻿namespace Champ.App.Areas.Dashboard.Controllers
 {
     using System.Web.Mvc;
     using System.Linq;
 
     using App.Controllers;
-    using Models;
+    using Models.PhotoModels;
+
 
     [Authorize(Roles = "Admin")]
     public class PicturesController : BaseController

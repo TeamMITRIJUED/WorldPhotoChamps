@@ -1,6 +1,4 @@
-﻿using Champ.App.Models.ContestModels;
-
-namespace Champ.App.Controllers
+﻿namespace Champ.App.Controllers
 {
     using System;
     using System.Linq;
@@ -8,9 +6,9 @@ namespace Champ.App.Controllers
     using Microsoft.AspNet.Identity;
     using AutoMapper.QueryableExtensions;
 
-    using Models;
     using Champ.Models;
-
+    using Models.ContestModels;
+    
     public class ContestController : BaseController
     {
         // GET: Contest
