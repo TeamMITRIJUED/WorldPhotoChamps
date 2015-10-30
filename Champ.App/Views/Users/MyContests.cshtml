@@ -3,24 +3,23 @@
 
     <div class="row">
         <h2>My Contests</h2>
-        <div class="col-md-6">
             @foreach (var contest in Model)
             {
-                <div class="well well-bg" style="border: 1px solid gray">
-                    <h4>@contest.Title</h4>
-                    <div class="well well-bg" style="border: 1px solid gray">
+                <div class="col-xs-8 col-md-4">
+
+                    <div class="well well-bg">
+                        <h4>@contest.Title</h4>
                         <div><strong>Finishes: </strong>@contest.ClosesOn</div>
                         <div>
                             <strong>Photos: </strong>Temporary unavailable @contest.Id
                         </div>
+                        <div style="padding-top: 5px">
+                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#inviteUsers" data-contest-id="@contest.Id">Invite Users</button>
+                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#editContest" data-contest-id="@contest.Id">Edit Contest</button>
+                        </div>
                     </div>
-
-                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#inviteUsers" data-contest-id="@contest.Id">Invite Users</button>
-                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#editContest" data-contest-id="@contest.Id">Edit Contest</button>
-
                 </div>
-            }
-        </div>
+            }   
     </div>
 
     <div id="inviteUsers" class="modal fade" role="dialog">
