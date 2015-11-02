@@ -2,6 +2,15 @@
 @model ContestParticipantViewModel
 
 <h2>@Model.Title</h2>
+@if (TempData["result"] != null)
+{
+    <h1>@TempData["result"]</h1>
+}
+else
+{
+    <h1>Some fucking Error</h1>
+}
+
 
 <div class="well well-bg" style="border: 1px solid gray">
     <div class="well well-bg" style="border: 1px solid gray">

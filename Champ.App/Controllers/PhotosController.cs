@@ -1,54 +1,19 @@
 ﻿namespace Champ.App.Controllers
 {
     using System;
-    using System.Configuration;
+    using System.IO;
+    using System.Threading.Tasks;
+    using System.Web;
+    using Microsoft.WindowsAzure.Storage.Blob;
     using Microsoft.AspNet.Identity;
     using System.Web.Mvc;
     using System.Linq;
+
     using Champ.Models;
     using Models.PhotoModels;
-    //using Microsoft.WindowsAzure;
-    //using Microsoft.WindowsAzure.Storage;
-    //using Microsoft.WindowsAzure.Storage.Auth;
-    //using Microsoft.WindowsAzure.Storage.Blob;
-    //using Microsoft.WindowsAzure.Configuration;
 
     public class PhotosController : BaseController
     {
-       //static CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-       //     ConfigurationManager.ConnectionStrings["fsdfsdf3sfsfsdfsfsfa"].ConnectionString);
-
-       //static CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-
-
-
-        [Authorize]
-        [HttpPost]
-        public ActionResult Add(PhotoViewModel model)
-        {
-            if (!this.ModelState.IsValid || model == null)
-            {
-                return RedirectToAction("ViewContests", "Contest");
-            }
-
-            var loggedUserId = this.User.Identity.GetUserId();
-            var contest = this.Data.Contests.Find(model.ContestId);
-
-            var photo = new Picture()
-            {
-                AuthorId = loggedUserId,
-                ContestId = model.ContestId,
-                CreatedOn = DateTime.Now,
-                LocationPath = model.Location
-            };
-
-            this.Data.Pictures.Add(photo);
-            contest.Pictures.Add(photo);
-            this.Data.SaveChanges();
-
-            return RedirectToAction("ViewContests", "Contest");
-        }
-
         [Authorize]
         [HttpGet]
         public ActionResult GetPhotos()
@@ -67,5 +32,52 @@
 
             return View(ownPhotos);
         }
-	}
+
+        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult> Create(int contestId, HttpPostedFileBase file)
+        {
+            CloudBlockBlob image = null;
+
+            if (file != null && file.ContentLength > 0)
+            {
+                image= await this.UploadBlobAsync(file);
+            }
+
+            if (image == null)
+            {
+                throw new HttpException();
+            }
+
+            var loggedUserId = this.User.Identity.GetUserId();
+            var contest = this.Data.Contests.Find(contestId);
+
+            var photo = new Picture
+            {
+                AuthorId = loggedUserId,
+                ContestId = contestId,
+                CreatedOn = DateTime.Now,
+                LocationPath = image.Uri.ToString()
+            };
+
+            contest.Pictures.Add(photo);
+            this.Data.SaveChanges();
+
+            return RedirectToAction("ViewContests", "Contest");
+        }
+
+        private async Task<CloudBlockBlob> UploadBlobAsync(HttpPostedFileBase imageFile)
+        {
+
+            string blobName = Guid.NewGuid() + Path.GetExtension(imageFile.FileName); 
+            var imageBlob = imagesContainer.GetBlockBlobReference(blobName);
+
+            using (var fileStream = imageFile.InputStream)
+            {
+                await imageBlob.UploadFromStreamAsync(fileStream);
+            }
+
+            return imageBlob;
+        }
+    }
 }

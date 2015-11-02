@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Champ.Data {
+namespace Champ.App {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Champ.Data {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Champ.Data.resources", typeof(resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Champ.App.resources", typeof(resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,20 @@ namespace Champ.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to admin@admin.com.
+        ///   Looks up a localized string similar to Ft1EnOXTStqPp/4zakH5FyK//2aSgfCT0L4IunF9pOe1kkCpj0rmapZGQX5XmZQyM546MzxosRh3klSVxE2SUQ==.
         /// </summary>
-        internal static string AdminEmail {
+        internal static string AccountKey {
             get {
-                return ResourceManager.GetString("AdminEmail", resourceCulture);
+                return ResourceManager.GetString("AccountKey", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to admin.
+        ///   Looks up a localized string similar to mitrijued.
         /// </summary>
-        internal static string AdminName {
+        internal static string AccountName {
             get {
-                return ResourceManager.GetString("AdminName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to adm1nsamaz.
-        /// </summary>
-        internal static string AdminPassword {
-            get {
-                return ResourceManager.GetString("AdminPassword", resourceCulture);
+                return ResourceManager.GetString("AccountName", resourceCulture);
             }
         }
     }
