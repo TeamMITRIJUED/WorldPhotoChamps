@@ -6,10 +6,13 @@
     using System.Web.Mvc;
     using System.Net;
     using AutoMapper.QueryableExtensions;
-
     using Models.ContestModels;
     using Models.SearchModels;
     using Models.UserModels;
+    using Microsoft.WindowsAzure;
+    using Microsoft.WindowsAzure.Storage;
+    using Microsoft.WindowsAzure.Storage.Auth;
+    using Microsoft.WindowsAzure.Storage.Blob;
 
     public class UsersController : BaseController
     {
