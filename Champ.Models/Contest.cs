@@ -1,4 +1,6 @@
-﻿namespace Champ.Models
+﻿using System.Security.Permissions;
+
+namespace Champ.Models
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -49,6 +51,8 @@
         public int? NumberOfAllowedParticipants { get; set; }
 
         public DeadlineStrategy DeadlineStrategy { get; set; }
+
+        public bool IsDismissed { get; set; }
 
         public virtual ICollection<User> Participants
         {

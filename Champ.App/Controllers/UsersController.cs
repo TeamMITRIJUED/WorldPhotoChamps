@@ -84,6 +84,16 @@
 
         }
 
+        [Authorize]
+        public ActionResult DismissContest(int id)
+        {
+            var contestDismissed = this.Data.Contests.Find(id);
+            contestDismissed.IsDismissed = true;
+            this.Data.SaveChanges();
+
+            return RedirectToAction("MyContests", "Users");
+        }
+
         public ActionResult GetUser(string username)
         {
             var user = this.Data.Users.All()

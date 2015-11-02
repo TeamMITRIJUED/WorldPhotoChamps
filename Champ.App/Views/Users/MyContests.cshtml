@@ -13,10 +13,19 @@
                         <div>
                             <strong>Photos: </strong>Temporary unavailable @contest.Id
                         </div>
-                        <div style="padding-top: 5px">
-                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#inviteUsers" data-contest-id="@contest.Id">Invite Users</button>
-                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#editContest" data-contest-id="@contest.Id">Edit Contest</button>
-                        </div>
+                        @if (contest.IsDismissed)
+                        {
+                            <p style="color: red">This contest is dismissed.</p>
+                        }
+                        else
+                        {
+                            <div style="padding-top: 5px">
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#inviteUsers" data-contest-id="@contest.Id">Invite Users</button>
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#editContest" data-contest-id="@contest.Id">Edit</button>
+                                @Html.ActionLink("Dismiss", "DismissContest", "Users", new { Id = contest.Id }, new { @class = "btn btn-info btn-sm" })
+                            </div>
+                        }
+                            
                     </div>
                 </div>
             }   
