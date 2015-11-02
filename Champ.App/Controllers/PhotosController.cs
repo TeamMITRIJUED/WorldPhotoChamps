@@ -19,9 +19,9 @@
         public ActionResult GetPhotos()
         {
             var loggedUserId = this.User.Identity.GetUserId();
-            var ownPhotos = this.Data.Pictures.All()
-                .OrderByDescending(p => p.Votes.Count)
-                .Where(p => p.Author.Id == loggedUserId)
+
+            var photos = this.Data.Pictures.All()
+                .Where(u => u.AuthorId == loggedUserId)
                 .Take(10)
                 .Select(p => new PhotoViewModel
                 {
@@ -29,8 +29,8 @@
                     Author = p.Author.UserName
                 })
                 .ToList();
-
-            return View(ownPhotos);
+       
+            return this.PartialView("_ViewPhoto", photos);
         }
 
         [Authorize]
