@@ -1,15 +1,27 @@
 ﻿namespace Champ.App.Controllers
 {
     using System;
+    using System.Configuration;
     using Microsoft.AspNet.Identity;
     using System.Web.Mvc;
     using System.Linq;
-
     using Champ.Models;
     using Models.PhotoModels;
+    //using Microsoft.WindowsAzure;
+    //using Microsoft.WindowsAzure.Storage;
+    //using Microsoft.WindowsAzure.Storage.Auth;
+    //using Microsoft.WindowsAzure.Storage.Blob;
+    //using Microsoft.WindowsAzure.Configuration;
 
     public class PhotosController : BaseController
     {
+       //static CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+       //     ConfigurationManager.ConnectionStrings["fsdfsdf3sfsfsdfsfsfa"].ConnectionString);
+
+       //static CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+
+
+
         [Authorize]
         [HttpPost]
         public ActionResult Add(PhotoViewModel model)
