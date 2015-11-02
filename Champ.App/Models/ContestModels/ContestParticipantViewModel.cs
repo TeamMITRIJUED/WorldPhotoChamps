@@ -1,4 +1,7 @@
-﻿namespace Champ.App.Models.ContestModels
+﻿using System.Collections.Generic;
+using Champ.App.Models.PhotoModels;
+
+namespace Champ.App.Models.ContestModels
 {
     using System;
 
@@ -11,5 +14,7 @@
         public int Pictures { get; set; }
 
         public bool HasAddedPhoto { get; set; }
+
+        public ICollection<PhotoViewModel> Photos { get; set; }
     }
 }

@@ -1,0 +1,26 @@
+﻿
+
+<div id="sidebar" class="well sidebar-nav">
+    <ul class="nav nav-pills nav-stacked">
+        @if (Request.IsAuthenticated)
+        {
+            <li>@Html.ActionLink("My Contests", "MyContests", "Users")</li>
+            <li>@Html.ActionLink("My Photos", "GetPhotos", "Photos")</li>
+            <li>@Html.ActionLink("Create a contest", "AddContest", "Contest")</li>
+            <li>@Html.ActionLink("Contests I Participate In", "", "")</li>
+        }
+        else
+        {
+            <li>
+                @Html.ActionLink("Active Contests", "ViewContests", "Contest", null,
+                            new { title = "Go to contests" })
+        </li>
+            <li>
+                @Html.ActionLink("Past Contests", "PastContests", "Contest", null,
+                            new { title = "Go to contests" })
+        </li>
+            <li></li>
+        }
+    </ul>
+</div>
+

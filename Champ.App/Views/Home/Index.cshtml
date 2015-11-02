@@ -1,21 +1,22 @@
-﻿@{
+﻿@using Champ.App.Models.ContestModels
+@model IEnumerable<ContestParticipantViewModel>
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
     <h1>Welcome to our awesome page!</h1>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">          
+            <div>
+                @Html.Partial("_UserAsideMenu")
+            </div>
+        </div>
 
-<div class="row">
-    <div class="col-md-4">
-        @Html.ActionLink("Active Contests", "ViewContests", "Contest", null, 
-            new {title = "Go to contests", @class = "btn btn-primary btn-lg"})
-    </div>
-    <div class="col-md-4">
-        @Html.ActionLink("Past Contests", "PastContests", "Contest", null, 
-            new { title = "Go to contests", @class = "btn btn-primary btn-lg" })
-    </div>
-    <div class="col-md-4">
-       
+        <div class="col-md-8" id="main-content">
+                @Html.Partial("_MainWindow", Model)
+        </div>
     </div>
 </div>

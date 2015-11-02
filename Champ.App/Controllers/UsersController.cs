@@ -17,19 +17,6 @@
     public class UsersController : BaseController
     {
         [Authorize]
-        public ActionResult ViewProfile()
-        {
-            var loggedUserId = this.User.Identity.GetUserId();
-
-            var userProfile = this.Data.Users.All()
-                .Where(u => u.Id == loggedUserId)
-                .Select(UserProfileViewModel.Create)
-                .FirstOrDefault();
-
-            return View(userProfile);
-        }
-
-        [Authorize]
         public ActionResult ApplyToContest(int id)
         {
             var loggedUserId = this.User.Identity.GetUserId();
