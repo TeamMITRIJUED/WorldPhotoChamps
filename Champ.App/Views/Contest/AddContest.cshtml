@@ -15,13 +15,18 @@
         @Html.LabelFor(m => m.Description)
         @Html.TextBoxFor(m => m.Description, htmlAttributes: new {@class = "form-control"})
     </div>
-
+    
     <div class="form-group">
+        @Html.LabelFor(m => m.DeadlineStrategy)
+        @Html.EnumDropDownListFor(m => m.DeadlineStrategy, new { @class = "form-control", id="deadline-strategy" })
+    </div>  
+
+    <div class="form-group" id="deadline-input">
         @Html.LabelFor(m => m.ClosesOn)
         @Html.TextBoxFor(m => m.ClosesOn, htmlAttributes: new { type = "date", @class = "form-control", @placeholder = "MM/dd/yyyy" })
     </div>
 
-    <div class="form-group">
+    <div class="form-group" id="number-of-participants" style="display: none">
         @Html.LabelFor(m => m.NumberOfAllowedParticipants)
         @Html.TextBoxFor(m => m.NumberOfAllowedParticipants, htmlAttributes: new {@class = "form-control"})
     </div>
@@ -39,11 +44,6 @@
     <div class="form-group">
         @Html.LabelFor(m => m.RewardStrategy)
         @Html.EnumDropDownListFor(m => m.RewardStrategy, new {@class = "form-control"})
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.DeadlineStrategy)
-        @Html.EnumDropDownListFor(m => m.DeadlineStrategy, new { @class = "form-control" })
     </div>
 
     <div>
