@@ -15,11 +15,10 @@
 
             <div class="col-md-8" id="main-content">
                 <div class="row">
-                    <h2>My Contests</h2>
                     @foreach (var contest in Model)
                     {
-                        <div class="col-xs-8 col-md-4">
-                            <div class="well well-bg">
+                        <div class="col-md-6">
+                            <div class="well well-bg" style="background-color: #EBF0FA; ">
                                 <h4>@Html.ActionLink(contest.Title, "GetContest", "Contest", new { id = contest.Id}, null)</h4>
                                 <div><strong>Finishes: </strong>@contest.ClosesOn</div>
                                 <div>
