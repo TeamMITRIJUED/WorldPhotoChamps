@@ -2,7 +2,7 @@
 @model PhotoViewModel
 
 <div class="col-md-6">
-    <a href="#" id="toggle-photo" data-toggle="modal" data-target="#showImage" data-location="@Model.Location">
+    <a href="#" id="toggle-photo" data-toggle="modal" data-target="#showImage" data-location="@Model.Location" data-photo-id="@Model.Id" data-has-voted="@Model.HasVoted">
         <img src="@Model.Location" class="img-responsive" alt="No preview available" id="imageresource" />
     </a>
     <div class="row">
@@ -11,16 +11,6 @@
         </div>
         <div class="col-sm-4">
             Votes : @Model.Votes
-        </div>
-        <div class="col-sm-3">
-            @if (!Model.HasVoted)
-            {
-                <p>Button</p>
-            }
-            else
-            {
-                <p>Already voted</p>
-            }
         </div>
     </div>
     <br/>

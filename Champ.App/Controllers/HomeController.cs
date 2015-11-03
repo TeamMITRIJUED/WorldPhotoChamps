@@ -108,8 +108,11 @@ namespace Champ.App.Controllers
                 .Take(10)
                 .Select(p => new PhotoViewModel
                 {
+                    Id = p.Id,
                     Location = p.LocationPath,
-                    Author = p.Author.UserName
+                    Author = p.Author.UserName,
+                    HasVoted = p.Votes.Any(v => v.VoterId == loggedUserId),
+                    Votes = p.Votes.Count
                 })
                 .ToList();
 
