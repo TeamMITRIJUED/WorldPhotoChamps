@@ -1,4 +1,5 @@
 ﻿$("#editContest").on("show.bs.modal", function (e) {
+    console.log("rabotish li be");
     var contestId = $(e.relatedTarget).data("contest-id");
     $(e.currentTarget).find("input[type=hidden]").val(contestId);
 });

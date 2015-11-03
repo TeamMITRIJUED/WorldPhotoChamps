@@ -7,32 +7,11 @@
     using Microsoft.WindowsAzure.Storage.Blob;
     using Microsoft.AspNet.Identity;
     using System.Web.Mvc;
-    using System.Linq;
 
     using Champ.Models;
-    using Models.PhotoModels;
 
     public class PhotosController : BaseController
     {
-        [Authorize]
-        [HttpGet]
-        public ActionResult GetPhotos()
-        {
-            var loggedUserId = this.User.Identity.GetUserId();
-
-            var photos = this.Data.Pictures.All()
-                .Where(u => u.AuthorId == loggedUserId)
-                .Take(10)
-                .Select(p => new PhotoViewModel
-                {
-                    Location = p.LocationPath,
-                    Author = p.Author.UserName
-                })
-                .ToList();
-       
-            return this.PartialView("_ViewPhoto", photos);
-        }
-
         [Authorize]
         [HttpPost]
         public async Task<ActionResult> Create(int contestId, HttpPostedFileBase file)

@@ -77,7 +77,7 @@
             contestDismissed.IsDismissed = true;
             this.Data.SaveChanges();
 
-            return RedirectToAction("MyContests", "Users");
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult GetUser(string username)
@@ -98,20 +98,6 @@
                 .ToList();
 
             return View(users);
-        }
-
-        [Authorize]
-        public ActionResult MyContests()
-        {
-            var loggedUserId = this.User.Identity.GetUserId();
-            var userContests = this.Data.Contests.All()
-                .Where(c => c.CreatorId == loggedUserId)
-                .Take(6)
-                .OrderByDescending(c => c.ClosesOn)
-                .ProjectTo<ContestViewModel>()
-                .ToList();
-
-            return this.PartialView(userContests);
         }
 
         public ActionResult SearchUsers(string username, int contestId)

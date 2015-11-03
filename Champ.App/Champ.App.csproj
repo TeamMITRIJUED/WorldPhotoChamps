@@ -306,17 +306,17 @@
     <Content Include="Views\Contest\_AddPhoto.cshtml" />
     <Content Include="Views\Home\_UserAsideMenu.cshtml" />
     <Content Include="Views\Users\GetAllUsers.cshtml" />
-    <Content Include="Views\Photos\GetPhotos.cshtml" />
+    <Content Include="Views\Home\MyPhotos.cshtml" />
     <Content Include="Views\Users\_ViewUser.cshtml" />
-    <Content Include="Views\Photos\_ViewPhoto.cshtml" />
-    <Content Include="Views\Users\MyContests.cshtml" />
-    <Content Include="Views\Users\_InviteUsersPartial.cshtml" />
-    <Content Include="Views\Users\_UserSearchPartial.cshtml" />
-    <Content Include="Views\Users\_EditContest.cshtml" />
+    <Content Include="Views\Home\MyContests.cshtml" />
+    <Content Include="Views\Shared\_InviteUsersPartial.cshtml" />
+    <Content Include="Views\Shared\_UserSearchPartial.cshtml" />
+    <Content Include="Views\Shared\_EditContest.cshtml" />
     <Content Include="Views\Home\_MainWindow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Dashboard\Models\" />
+    <Folder Include="Views\Photos\" />
     <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>

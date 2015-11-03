@@ -1,4 +1,6 @@
-﻿namespace Champ.App.Controllers
+﻿using AutoMapper.QueryableExtensions;
+
+namespace Champ.App.Controllers
 {
     using System.Web.Mvc;
     using System.Linq;
@@ -51,11 +53,37 @@
             return View(paged);
         }
 
-        public ActionResult About()
+        [Authorize]
+        public ActionResult MyContests()
         {
-            ViewBag.Message = "Your application description page.";
+            var loggedUserId = this.User.Identity.GetUserId();
+            var userContests = this.Data.Contests.All()
+                .Where(c => c.CreatorId == loggedUserId)
+                .Take(6)
+                .OrderByDescending(c => c.ClosesOn)
+                .ProjectTo<ContestViewModel>()
+                .ToList();
 
-            return View();
+            return this.View(userContests);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult MyPhotos()
+        {
+            var loggedUserId = this.User.Identity.GetUserId();
+
+            var photos = this.Data.Pictures.All()
+                .Where(u => u.AuthorId == loggedUserId)
+                .Take(10)
+                .Select(p => new PhotoViewModel
+                {
+                    Location = p.LocationPath,
+                    Author = p.Author.UserName
+                })
+                .ToList();
+
+            return View(photos);
         }
 
         public ActionResult Contact()
