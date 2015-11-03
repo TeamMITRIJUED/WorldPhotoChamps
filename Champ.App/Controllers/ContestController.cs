@@ -4,9 +4,11 @@
     using System.Linq;
     using System.Web.Mvc;
     using AutoMapper.QueryableExtensions;
-    using Champ.Models;
-    using Models.ContestModels;
     using Microsoft.AspNet.Identity;
+
+    using Champ.Models;
+    using Models.PhotoModels;
+    using Models.ContestModels;
     
     public class ContestController : BaseController
     {
@@ -81,7 +83,11 @@
                     Creator = contest.Creator.UserName,
                     CreatedOn = contest.CreatenOn,
                     ClosesOn = contest.ClosesOn,
-                    Pictures = contest.Pictures.Count,
+                    Pictures = contest.Pictures.Take(10).Select(p => new PhotoViewModel
+                    {
+                        Author = p.Author.UserName,
+                        Location = p.LocationPath
+                    }).ToList(),
                     HasAddedPhoto = contest.Pictures.Any(p => p.AuthorId == loggedUserId)
                 };
                 return View("ViewContestParticipatingUser", contestToReturn);

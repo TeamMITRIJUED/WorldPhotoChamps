@@ -6,7 +6,7 @@
     {
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4>@contest.Title</h4>
+                <h4>@Html.ActionLink(contest.Title, "GetContest", "Contest", new { id = contest.Id}, null)</h4>
                 <h6>Created by: @contest.Creator</h6>
             </div>
             <div class="panel-body">

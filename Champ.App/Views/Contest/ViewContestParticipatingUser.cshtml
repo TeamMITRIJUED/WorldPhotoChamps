@@ -2,14 +2,6 @@
 @model ContestParticipantViewModel
 
 <h2>@Model.Title</h2>
-@if (TempData["result"] != null)
-{
-    <h1>@TempData["result"]</h1>
-}
-else
-{
-    <h1>Some fucking Error</h1>
-}
 
 
 <div class="well well-bg" style="border: 1px solid gray">
@@ -22,7 +14,15 @@ else
             <strong>Started: </strong>@Model.CreatedOn
         </div>
         <div><strong>Finishes: </strong>@Model.ClosesOn</div>
-        <div><strong>Photos: </strong>@Model.Pictures</div>
+        <div class="row">
+            @foreach (var photo in Model.Pictures)
+            {
+                <div class="col-md-3">
+                    <img src="@photo.Location" class="img-responsive" alt="No preview available"/>
+                    <p>By: @photo.Author</p>
+                </div>
+            }
+        </div>
     </div>
 
     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Add a photo</button>

@@ -19,24 +19,24 @@
                     @foreach (var contest in Model)
                     {
                         <div class="col-xs-8 col-md-4">
-                        <div class="well well-bg">
-                            <h4>@contest.Title</h4>
-                            <div><strong>Finishes: </strong>@contest.ClosesOn</div>
-                            <div>
-                                <strong>Photos: </strong>Temporary unavailable @contest.Id
-                            </div>
-                            @if (contest.IsDismissed)
-                            {
-                                <p style="color: red">This contest is dismissed.</p>
-                            }
-                            else
-                            {
-                                <div style="padding-top: 5px">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#inviteUsers" data-contest-id="@contest.Id">Invite Users</button>
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#editContest" data-contest-id="@contest.Id">Edit</button>
-                                    @Html.ActionLink("Dismiss", "DismissContest", "Users", new { Id = contest.Id }, new { @class = "btn btn-info btn-sm" })
+                            <div class="well well-bg">
+                                <h4>@Html.ActionLink(contest.Title, "GetContest", "Contest", new { id = contest.Id}, null)</h4>
+                                <div><strong>Finishes: </strong>@contest.ClosesOn</div>
+                                <div>
+                                    <strong>Photos: </strong>Temporary unavailable @contest.Id
                                 </div>
-                            }
+                                @if (contest.IsDismissed)
+                                {
+                                    <p style="color: red">This contest is dismissed.</p>
+                                }
+                                else
+                                {
+                                    <div style="padding-top: 5px">
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#inviteUsers" data-contest-id="@contest.Id">Invite Users</button>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#editContest" data-contest-id="@contest.Id">Edit</button>
+                                        @Html.ActionLink("Dismiss", "DismissContest", "Users", new {Id = contest.Id}, new {@class = "btn btn-info btn-sm"})
+                                    </div>
+                                }
                             </div>
                         </div>
                     }

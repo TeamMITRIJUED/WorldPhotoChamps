@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using Champ.App.Models.PhotoModels;
-
-namespace Champ.App.Models.ContestModels
+﻿namespace Champ.App.Models.ContestModels
 {
     using System;
+    using System.Collections.Generic;
+    using PhotoModels;
 
     public class ContestParticipantViewModel : ContestViewModel
     {
@@ -11,7 +10,7 @@ namespace Champ.App.Models.ContestModels
 
         public DateTime CreatedOn { get; set; }
 
-        public int Pictures { get; set; }
+        public ICollection<PhotoViewModel> Pictures { get; set; }
 
         public bool HasAddedPhoto { get; set; }
 
