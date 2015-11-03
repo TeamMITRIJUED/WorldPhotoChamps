@@ -19,38 +19,65 @@ namespace Champ.App.Controllers
         {
             var loggedUserId = this.User.Identity.GetUserId();
 
-            var contests = this.Data.Contests.All()
+            if (loggedUserId != null)
+            {
+                var contests = this.Data.Contests.All()
                 .Where(c => c.ClosesOn > DateTime.Now && c.Participants.Any(u => u.Id == loggedUserId))
                 .ToList();
 
-            var paged = new HomeViewModel
+                var paged = new HomeViewModel
+                {
+                    PageCount = contests.Count / PageSize,
+                    PageSize = PageSize,
+                    CurrentPage = id,
+                    Contests = contests
+                        .OrderByDescending(c => c.CreatenOn)
+                        .Skip((id - 1) * PageSize)
+                        .Take(PageSize)
+                        .Select(c => new ContestParticipantViewModel()
+                        {
+                            Id = c.Id,
+                            Title = c.Title,
+                            Creator = c.Creator.UserName,
+                            Photos = c.Pictures
+                                .Take(4)
+                                .Select(p => new PhotoViewModel()
+                                {
+                                    Author = p.Author.UserName,
+                                    ContestId = c.Id,
+                                    Location = p.LocationPath
+                                })
+                                .ToList()
+                        }).ToList()
+                };
+
+                return View(paged);
+            }
+
+
+            var contestsForAnonymUser = this.Data.Contests.All()
+                .OrderByDescending(c => c.CreatenOn)
+                .Take(3)
+                .ToList();
+
+
+            var result = new HomeViewModel()
             {
-                PageCount = contests.Count / PageSize,
-                PageSize = PageSize,
-                CurrentPage = id,
-                Contests = contests
-                    .OrderByDescending(c => c.CreatenOn)
-                    .Skip((id - 1) * PageSize)
-                    .Take(PageSize)
+                Contests = contestsForAnonymUser
                     .Select(c => new ContestParticipantViewModel()
                     {
-                        Id = c.Id,
                         Title = c.Title,
-                        Creator = c.Creator.UserName,
                         Photos = c.Pictures
-                            .Take(4)
+                            .Take(3)
                             .Select(p => new PhotoViewModel()
                             {
-                                Author = p.Author.UserName,
-                                ContestId = c.Id,
                                 Location = p.LocationPath
-                            })
-                            .ToList()
-                    }).ToList()
+                            }).ToList(),
+                            Description = c.Description
+                    })
             };
 
-
-            return View(paged);
+            return View(result);
         }
 
         [Authorize]
