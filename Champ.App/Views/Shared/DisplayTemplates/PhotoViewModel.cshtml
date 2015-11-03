@@ -1,0 +1,11 @@
+﻿@using Champ.App.Models.PhotoModels
+@model PhotoViewModel
+
+<div class="col-md-6">
+    <div class="well well-bg" style="border: 1px solid gray">
+        <h4>It should display the actual photo:</h4>
+        <img src="@Model.Location" class="img-responsive" alt="No preview available" />
+        <p>Submitted by: @Model.Author</p>
+    </div>
+</div>
+

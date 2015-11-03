@@ -313,11 +313,13 @@
     <Content Include="Views\Shared\_UserSearchPartial.cshtml" />
     <Content Include="Views\Shared\_EditContest.cshtml" />
     <Content Include="Views\Home\_MainWindow.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ContestParticipantViewModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ContestViewModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PhotoViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Dashboard\Models\" />
     <Folder Include="Views\Photos\" />
-    <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

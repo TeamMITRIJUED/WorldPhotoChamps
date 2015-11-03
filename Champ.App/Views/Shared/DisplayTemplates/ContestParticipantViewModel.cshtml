@@ -1,0 +1,26 @@
+﻿
+@using Champ.App.Models.ContestModels
+@model ContestParticipantViewModel
+
+<div class="well well-bg" style="border: 1px solid gray">
+    <div>
+        <strong>Description: </strong>@Model.Description
+    </div>
+    <div><strong>Created by: </strong> @Html.ActionLink(@Model.Creator, "GetUser", "Users", new { username = @Model.Creator }, new { title = "View profile" })</div>
+    <div>
+        <strong>Started: </strong>@Model.CreatedOn
+    </div>
+    <div><strong>Finishes: </strong>@Model.ClosesOn</div>
+    <div>
+        <strong>Photos: </strong>
+        <div class="row">
+            @foreach (var photo in @Model.Photos)
+            {
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                    <img class="img-responsive" src="@photo.Location" alt="No preview available" />
+                    <p>@photo.Author</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>

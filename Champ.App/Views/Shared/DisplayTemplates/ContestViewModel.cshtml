@@ -1,0 +1,15 @@
+﻿@using Champ.App.Models.ContestModels
+@model ContestViewModel
+
+<div class="well well-lg">
+    <div><strong>Title: </strong>@Html.ActionLink(@Model.Title, "GetContest", "Contest", new { Id = @Model.Id }, new { title = "Go to contest" })</div>
+    <div><strong>Description: </strong>@Model.Description </div>
+    <div><strong>Count of participants: </strong>@Model.CountOfParticipants</div>
+    <div><strong>Number of Allowed participants: </strong>@Model.NumberOfAllowedParticipants </div>
+    <div><strong>Closes on: </strong>@Model.ClosesOn</div>
+    <div><strong>Participation Strategy: </strong>@Model.ParticipationStrategy</div>
+    @if (Model.ParticipationStrategy == 0 && !Model.HasParticipated)
+    {
+        @Html.ActionLink("Participate", "ApplyToContest", "Users", new { Id = Model.Id }, new { @class = "btn btn-primary", title = "Participate" })
+    }
+</div>

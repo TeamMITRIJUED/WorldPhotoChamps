@@ -56,9 +56,9 @@ namespace Champ.App
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "821215987996519",
+               appSecret: "ea87468cad178c5e2cf7351e98ff1733");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
