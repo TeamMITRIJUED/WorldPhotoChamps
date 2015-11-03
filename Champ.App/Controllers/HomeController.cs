@@ -74,7 +74,9 @@ namespace Champ.App.Controllers
                             .Take(3)
                             .Select(p => new PhotoViewModel()
                             {
-                                Location = p.LocationPath
+                                Location = p.LocationPath,
+                                Author = p.Author.UserName,
+                                Votes = p.Votes.Count
                             }).ToList(),
                             Description = c.Description
                     })

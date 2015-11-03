@@ -16,9 +16,15 @@ $("#showImage").on("show.bs.modal", function (e) {
     var hasVoted = $(e.relatedTarget).data("has-voted");
     if (hasVoted === "True") {
         $("#vote-photo").hide();
+    } else {
+        $("#vote-photo").show();
     }
     $(e.currentTarget).find("input[type=hidden]").val(photoId);
     $("#imagepreview").attr("src", imageSrc);
+});
+
+$("#showImage").on("hidden.bs.modal", function() {
+    location.reload();
 });
 
 $("#vote-photo").click(function() {

@@ -18,14 +18,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("World Photo Champs", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @if (Request.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
                     }
                     <li>
                         @if (User.IsInRole("Admin"))
@@ -55,10 +54,13 @@
                 </div>
                 <div class="modal-body">
                     <img src="" id="imagepreview" alt="No preview available" class="img-responsive">
-                    <button type="button" id="vote-photo" class="btn btn-primary glyphicon glyphicon-thumbs-up"></button>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <button type="button" id="vote-photo" class="btn btn-primary glyphicon glyphicon-thumbs-up"></button>
+                    }
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" id="current-photo-id"/>
+                    <input type="hidden" id="current-photo-id" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
