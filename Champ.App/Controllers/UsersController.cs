@@ -111,7 +111,7 @@
                 .ProjectTo<ContestViewModel>()
                 .ToList();
 
-            return View(userContests);
+            return this.PartialView(userContests);
         }
 
         public ActionResult SearchUsers(string username, int contestId)
