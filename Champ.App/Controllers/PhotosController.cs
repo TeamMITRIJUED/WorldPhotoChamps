@@ -13,12 +13,8 @@
     public class PhotosController : BaseController
     {
         [Authorize]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Vote()
+        public JsonResult Vote(int photoId)
         {
-            int photoId = 0;
-
             var loggedUserId = this.User.Identity.GetUserId();
             var loggedUser = this.Data.Users.Find(loggedUserId);
             var photo = this.Data.Pictures.Find(photoId);
@@ -33,7 +29,7 @@
             photo.Votes.Add(vote);
             this.Data.SaveChanges();
 
-            return null;
+            return this.Json(new {result = "success"}, JsonRequestBehavior.AllowGet);
         }
 
 
