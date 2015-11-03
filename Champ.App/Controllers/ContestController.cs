@@ -7,11 +7,6 @@
     using Champ.Models;
     using Models.ContestModels;
     using Microsoft.AspNet.Identity;
-    using Microsoft.WindowsAzure;
-    using Microsoft.WindowsAzure.Storage;
-    using Microsoft.WindowsAzure.Storage.Auth;
-    using Microsoft.WindowsAzure.Storage.Blob;
-    
     
     public class ContestController : BaseController
     {

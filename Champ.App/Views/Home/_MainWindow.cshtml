@@ -1,7 +1,8 @@
-﻿@model IEnumerable<Champ.App.Models.ContestModels.ContestParticipantViewModel>
+﻿@using Champ.App.Models.HomeModels
+@model HomeViewModel
 
 <div>
-    @foreach (var contest in Model)
+    @foreach (var contest in Model.Contests)
     {
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -19,8 +20,19 @@
                         </div>
 
                     }
-                    </div >
                 </div>
             </div>
+        </div>
     }
 </div>
+
+<ul class="pagination">
+    @{
+        for (int page = 0; page < Model.PageCount; page++)
+        {
+            string pageNum = (page + 1).ToString();
+            string activeClass = Model.CurrentPage - 1 == page ? "active" : "";
+            <li class="@activeClass">@Html.ActionLink(pageNum, "Index", routeValues: new { id = page + 1 })</li>
+        }
+    }
+</ul>
