@@ -4,19 +4,5 @@
 <h2>Contests</h2>
 @foreach (var contest in Model)
 {
-    <div class="well well-bg" style="border: 1px solid gray">
-        <div>@Html.ActionLink(contest.Title, "GetContest", "Contest", new {Id = contest.Id}, new {title = "Go to contest"})</div>
-        <div><strong>Description: </strong>@contest.Description
-        </div>
-        <div><strong>Count of participants: </strong> @contest.CountOfParticipants</div>
-        <div><strong>Number of Allowed participants: </strong>@contest.NumberOfAllowedParticipants
-        </div>
-        <div><strong>Closes on: </strong>@contest.ClosesOn</div>
-        <div><strong>Participation Strategy: </strong>@contest.ParticipationStrategy</div>
-        @if (contest.ParticipationStrategy == 0 && !contest.HasParticipated)
-        {
-            @Html.ActionLink("Participate", "ApplyToContest", "Users", new {Id = contest.Id}, new {@class = "btn btn-primary", title = "Participate"})
-        }
-    </div>
-    <br/>
+    @Html.DisplayFor(c => contest)
 }

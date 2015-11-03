@@ -5,24 +5,8 @@
 
 
 <div class="well well-bg" style="border: 1px solid gray">
-    <div class="well well-bg" style="border: 1px solid gray">
-        <div>
-            <strong>Description: </strong>@Model.Description
-        </div>
-        <div><strong>Created by: </strong> @Html.ActionLink(@Model.Creator, "GetUser", "Users", new { username = @Model.Creator }, new { title = "View profile" })</div>
-        <div>
-            <strong>Started: </strong>@Model.CreatedOn
-        </div>
-        <div><strong>Finishes: </strong>@Model.ClosesOn</div>
-        <div class="row">
-            @foreach (var photo in Model.Pictures)
-            {
-                <div class="col-md-3">
-                    <img src="@photo.Location" class="img-responsive" alt="No preview available"/>
-                    <p>By: @photo.Author</p>
-                </div>
-            }
-        </div>
+    <div>
+        @Html.DisplayFor(c => Model)
     </div>
 
     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Add a photo</button>
