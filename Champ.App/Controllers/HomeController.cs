@@ -13,7 +13,7 @@ namespace Champ.App.Controllers
 
     public class HomeController : BaseController
     {
-        private const int PageSize = 3;
+        private const int PageSize = 5;
 
         public ActionResult Index(int id = 1)
         {
@@ -27,7 +27,9 @@ namespace Champ.App.Controllers
 
                 var paged = new HomeViewModel
                 {
-                    PageCount = contests.Count / PageSize,
+                    PageCount = contests.Count % PageSize == 0 
+                            ? contests.Count / PageSize 
+                            : contests.Count / PageSize + 1,
                     PageSize = PageSize,
                     CurrentPage = id,
                     Contests = contests
@@ -39,7 +41,7 @@ namespace Champ.App.Controllers
                             Id = c.Id,
                             Title = c.Title,
                             Creator = c.Creator.UserName,
-                            Pictures= c.Pictures
+                            Pictures = c.Pictures
                                 .Take(4)
                                 .Select(p => new PhotoViewModel()
                                 {
@@ -60,25 +62,31 @@ namespace Champ.App.Controllers
 
             var contestsForAnonymUser = this.Data.Contests.All()
                 .OrderByDescending(c => c.CreatenOn)
-                .Take(3)
                 .ToList();
 
 
-            var result = new HomeViewModel()
+            var result = new HomeViewModel
             {
+                PageCount = contestsForAnonymUser.Count % PageSize == 0
+                            ? contestsForAnonymUser.Count / PageSize
+                            : contestsForAnonymUser.Count / PageSize + 1,
+                PageSize = PageSize,
+                CurrentPage = id,
                 Contests = contestsForAnonymUser
-                    .Select(c => new ContestParticipantViewModel()
+                    .Skip((id - 1) * PageSize)
+                    .Take(PageSize)
+                    .Select(c => new ContestParticipantViewModel
                     {
                         Title = c.Title,
                         Pictures = c.Pictures
                             .Take(3)
-                            .Select(p => new PhotoViewModel()
+                            .Select(p => new PhotoViewModel
                             {
                                 Location = p.LocationPath,
                                 Author = p.Author.UserName,
                                 Votes = p.Votes.Count
                             }).ToList(),
-                            Description = c.Description
+                        Description = c.Description
                     })
             };
 

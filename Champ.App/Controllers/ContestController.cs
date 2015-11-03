@@ -9,9 +9,12 @@
     using Champ.Models;
     using Models.PhotoModels;
     using Models.ContestModels;
-    
+
     public class ContestController : BaseController
     {
+
+        private const int PageSize = 5;
+
         // GET: Contest
         public ActionResult Index()
         {
@@ -112,48 +115,39 @@
             return View("GetContestToAnonymousUser", searchedContest);
         }
 
-        public ActionResult ViewContests()
+        [Authorize]
+        public ActionResult ViewContests(int id = 1)
         {
-
             var loggedUserId = User.Identity.GetUserId();
-            var user = this.Data.Users.All().FirstOrDefault(u => u.Id == loggedUserId);
 
+            var contests = this.Data.Contests.All()
+                .Where(c => c.ClosesOn > DateTime.Now && c.Participants.Count(p => p.Id == loggedUserId) == 0)
+                .ToList();
 
-            if (user == null)
+            var model = new BrowseContestsViewModel
             {
-                var contests = this.Data.Contests.All()
-                 .Where(c => c.ClosesOn > DateTime.Now)
-                 .OrderByDescending(c => c.CreatenOn)
-                 .Take(10)
-                 .Select(c => new ContestViewModel()
-                 {
-                     Id = c.Id,
-                     Title = c.Title,
-                     Description = c.Description,
-
-                 }).ToList();
-
-                return View("ViewAnonymousUser", contests);
-            }
-            else
-            {
-                var contests = this.Data.Contests.All()
-                .Where(c => c.ClosesOn > DateTime.Now)
-                .OrderByDescending(c => c.CreatenOn)
-                .Take(10)
-                .Select(c => new ContestViewModel()
-                {
-                    Id = c.Id,
-                    Title = c.Title,
-                    Description = c.Description,
-                    CountOfParticipants = c.Participants.Count,
-                    ClosesOn = c.ClosesOn,
-                    NumberOfAllowedParticipants = c.NumberOfAllowedParticipants,
-                    ParticipationStrategy = c.ParticipationStrategy,
-                    HasParticipated = c.Participants.Any(p => p.Id == loggedUserId)
-                }).ToList();
-                return View("ViewLoggedUser", contests);
-            }
+                CurrentPage = id,
+                PageSize = PageSize,
+                PageCount = contests.Count % PageSize == 0
+                    ? contests.Count / PageSize
+                    : contests.Count / PageSize + 1,
+                Contests = contests.OrderByDescending(c => c.CreatenOn)
+                    .Skip((id - 1) * PageSize)
+                    .Take(PageSize)
+                    .Select(c => new ContestViewModel()
+                    {
+                        Id = c.Id,
+                        Title = c.Title,
+                        Description = c.Description,
+                        CountOfParticipants = c.Participants.Count,
+                        ClosesOn = c.ClosesOn,
+                        NumberOfAllowedParticipants = c.NumberOfAllowedParticipants,
+                        ParticipationStrategy = c.ParticipationStrategy,
+                        HasParticipated = c.Participants.Any(p => p.Id == loggedUserId)
+                    }).ToList()
+            };
+            
+            return View(model);
         }
 
         public ActionResult PastContests()

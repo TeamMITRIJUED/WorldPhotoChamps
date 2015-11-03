@@ -210,6 +210,7 @@
     <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
     <Compile Include="Models\AccountModels\AccountViewModels.cs" />
+    <Compile Include="Models\ContestModels\BrowseContestsViewModel.cs" />
     <Compile Include="Models\ContestModels\ContestViewModel.cs" />
     <Compile Include="Models\ContestModels\EditContestViewModel.cs" />
     <Compile Include="Models\AccountModels\ManageViewModels.cs" />
@@ -295,7 +296,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Contest\ViewLoggedUser.cshtml" />
+    <Content Include="Views\Contest\ViewContests.cshtml" />
     <Content Include="Views\Contest\ViewAnonymousUser.cshtml" />
     <Content Include="Views\Contest\AddContest.cshtml" />
     <Content Include="Views\Shared\SuccessfullAddition.cshtml" />
@@ -304,7 +305,7 @@
     <Content Include="Views\Contest\PastContests.cshtml" />
     <Content Include="Views\Contest\ViewContestParticipatingUser.cshtml" />
     <Content Include="Views\Contest\_AddPhoto.cshtml" />
-    <Content Include="Views\Home\_UserAsideMenu.cshtml" />
+    <Content Include="Views\Shared\_UserAsideMenu.cshtml" />
     <Content Include="Views\Users\GetAllUsers.cshtml" />
     <Content Include="Views\Home\MyPhotos.cshtml" />
     <Content Include="Views\Users\_ViewUser.cshtml" />

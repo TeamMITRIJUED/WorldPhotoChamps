@@ -1,0 +1,46 @@
+﻿@using Champ.App.Models.ContestModels
+@model BrowseContestsViewModel
+
+<h2>Contests</h2>
+
+<div class="jumbotron">
+    <h1>Welcome to our awesome page!</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div>
+                @Html.Partial("_UserAsideMenu")
+            </div>
+        </div>
+
+        <div class="col-md-8" id="main-content">
+            @if (Model.Contests.Any())
+            {
+                <div class="row">
+                    @foreach (var contest in Model.Contests)
+                    {
+                        @Html.DisplayFor(c => contest)
+                    }
+                </div>
+                <ul class="pagination">
+                    @{
+                        for (int page = 0; page < Model.PageCount; page++)
+                        {
+                            string pageNum = (page + 1).ToString();
+                            string activeClass = Model.CurrentPage - 1 == page ? "active" : "";
+                            <li class="@activeClass">@Html.ActionLink(pageNum, "ViewContests", "Contest", new {id = page + 1}, null)</li>
+                        }
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>Sorry, but there are no active contests currently or you participate in all</p>
+            }
+        </div>
+    </div>
+
+</div>
+
+
