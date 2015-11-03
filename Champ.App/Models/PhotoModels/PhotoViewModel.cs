@@ -2,14 +2,23 @@
 
 namespace Champ.App.Models.PhotoModels
 {
+    using System.ComponentModel;
+
     public class PhotoViewModel
     {
-        [Required]
+
+        public int Id { get; set; }
+
         public string Location { get; set; }
 
         [Required]
         public string Author { get; set; }
 
         public int ContestId { get; set; }
+
+        public bool HasVoted { get; set; }
+
+        [DefaultValue(0)]
+        public int Votes { get; set; }
     }
 }
