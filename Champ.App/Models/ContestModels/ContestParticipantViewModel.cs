@@ -13,7 +13,5 @@
         public ICollection<PhotoViewModel> Pictures { get; set; }
 
         public bool HasAddedPhoto { get; set; }
-
-        public ICollection<PhotoViewModel> Photos { get; set; }
     }
 }

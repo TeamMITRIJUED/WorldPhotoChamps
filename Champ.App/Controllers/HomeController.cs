@@ -39,7 +39,7 @@ namespace Champ.App.Controllers
                             Id = c.Id,
                             Title = c.Title,
                             Creator = c.Creator.UserName,
-                            Photos = c.Pictures
+                            Pictures= c.Pictures
                                 .Take(4)
                                 .Select(p => new PhotoViewModel()
                                 {
@@ -67,7 +67,7 @@ namespace Champ.App.Controllers
                     .Select(c => new ContestParticipantViewModel()
                     {
                         Title = c.Title,
-                        Photos = c.Pictures
+                        Pictures = c.Pictures
                             .Take(3)
                             .Select(p => new PhotoViewModel()
                             {
