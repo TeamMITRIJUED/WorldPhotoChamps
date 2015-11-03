@@ -14,6 +14,31 @@
     {
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Vote()
+        {
+            int photoId = 0;
+
+            var loggedUserId = this.User.Identity.GetUserId();
+            var loggedUser = this.Data.Users.Find(loggedUserId);
+            var photo = this.Data.Pictures.Find(photoId);
+            
+            var vote = new Vote
+            {
+                VotedOn = DateTime.Now,
+                Voter = loggedUser,
+                Picture = photo
+            };
+
+            photo.Votes.Add(vote);
+            this.Data.SaveChanges();
+
+            return null;
+        }
+
+
+        [Authorize]
+        [HttpPost]
         public async Task<ActionResult> Create(int contestId, HttpPostedFileBase file)
         {
             CloudBlockBlob image = null;

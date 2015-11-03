@@ -43,9 +43,12 @@ namespace Champ.App.Controllers
                                 .Take(4)
                                 .Select(p => new PhotoViewModel()
                                 {
+                                    Id = p.Id,
                                     Author = p.Author.UserName,
                                     ContestId = c.Id,
-                                    Location = p.LocationPath
+                                    Location = p.LocationPath,
+                                    Votes = p.Votes.Count,
+                                    HasVoted = p.Votes.Any(v => v.VoterId == loggedUserId)
                                 })
                                 .ToList()
                         }).ToList()
