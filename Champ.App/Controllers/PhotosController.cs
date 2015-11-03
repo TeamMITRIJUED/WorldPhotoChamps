@@ -42,7 +42,7 @@
             contest.Pictures.Add(photo);
             this.Data.SaveChanges();
 
-            return RedirectToAction("ViewContests", "Contest");
+            return RedirectToAction("GetContest", "Contest", new { id = contest.Id});
         }
 
         private async Task<CloudBlockBlob> UploadBlobAsync(HttpPostedFileBase imageFile)
