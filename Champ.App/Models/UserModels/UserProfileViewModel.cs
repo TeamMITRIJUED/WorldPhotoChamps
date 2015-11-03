@@ -1,4 +1,6 @@
-﻿namespace Champ.App.Models.UserModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Champ.App.Models.UserModels
 {
     using System;
     using System.Linq.Expressions;

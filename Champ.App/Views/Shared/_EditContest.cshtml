@@ -10,19 +10,17 @@
 
         @using (@Html.BeginForm("EditContest", "Users", FormMethod.Post))
         {
+            @Html.ValidationSummary(true)
+
             <div class="form-group">
                 @Html.LabelFor(m => m.Description)
                 @Html.TextBoxFor(m => m.Description, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Description)
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.ClosesOn)
                 @Html.TextBoxFor(m => m.ClosesOn, htmlAttributes: new { type = "date", @class = "form-control", @placeholder = "MM/dd/yyyy" })
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.NumberOfAllowedParticipants)
-                @Html.TextBoxFor(m => m.NumberOfAllowedParticipants, htmlAttributes: new { @class = "form-control" })
             </div>
 
             <div class="form-group">
@@ -37,3 +35,7 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

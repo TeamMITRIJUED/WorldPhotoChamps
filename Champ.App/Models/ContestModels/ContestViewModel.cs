@@ -11,24 +11,30 @@
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Description is required")]
+        [StringLength(100, ErrorMessage = "Description length should be less than 100")]
         public string Description { get; set; }
 
         public DateTime CreatenOn { get; set; }
 
+        [Required(ErrorMessage = "Voting Strategy is required.")]
         public VotingStrategy VotingStrategy { get; set; }
 
+        [Required(ErrorMessage = "Reward Strategy is required.")]
         public RewardStrategy RewardStrategy { get; set; }
 
+        [Required(ErrorMessage = "Participation Strategy is required.")]
         public ParticipationStrategy ParticipationStrategy { get; set; }
 
         public DateTime? ClosesOn { get; set; }
 
+        [Range(5, 100)]
         public int? NumberOfAllowedParticipants { get; set; }
 
+        [Required(ErrorMessage = "Deadline Strategy is required.")]
         public DeadlineStrategy DeadlineStrategy { get; set; }
 
         public int CountOfParticipants { get; set; }
