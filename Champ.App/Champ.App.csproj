@@ -217,6 +217,8 @@
     <Compile Include="Models\AccountModels\ManageViewModels.cs" />
     <Compile Include="Models\ContestModels\ContestParticipantViewModel.cs" />
     <Compile Include="Models\HomeModels\HomeViewModel.cs" />
+    <Compile Include="Models\NotificationModels\BrowseNotificationsViewModel.cs" />
+    <Compile Include="Models\NotificationModels\NotificationViewModel.cs" />
     <Compile Include="Models\PhotoModels\PhotoViewModel.cs" />
     <Compile Include="Models\SearchModels\SearchViewModel.cs" />
     <Compile Include="Models\UserModels\UserInvitationViewModel.cs" />
@@ -319,6 +321,8 @@
     <Content Include="Views\Shared\DisplayTemplates\ContestParticipantViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ContestViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PhotoViewModel.cshtml" />
+    <Content Include="Views\Home\Notifications.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\NotificationViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Dashboard\Models\" />
