@@ -1,15 +1,15 @@
-﻿using AutoMapper.QueryableExtensions;
-
-namespace Champ.App.Controllers
+﻿namespace Champ.App.Controllers
 {
+    using System;
     using System.Web.Mvc;
     using System.Linq;
     using Microsoft.AspNet.Identity;
-    using System;
+    using AutoMapper.QueryableExtensions;
 
     using Models.ContestModels;
     using Models.PhotoModels;
     using Models.HomeModels;
+    using Models.NotificationModels;
 
     public class HomeController : BaseController
     {
@@ -136,6 +136,22 @@ namespace Champ.App.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [Authorize]
+        public ActionResult Notifications()
+        {
+            var loggedUserId = this.User.Identity.GetUserId();
+
+            var model = new BrowseNotificationsViewModel
+            {
+                Notifications = this.Data.Notifications.All()
+                    .Where(n => n.ReceiverId == loggedUserId)
+                    .Select(NotificationViewModel.Create)
+                    .ToList()
+            };
+
+            return this.View(model);
         }
     }
 }
