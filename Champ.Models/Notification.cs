@@ -1,11 +1,14 @@
 ﻿namespace Champ.Models
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel;
 
     public class Notification
     {
         public int Id { get; set; }
+
+        public DateTime DateSent { get; set; }
 
         [Required]
         public string Text { get; set; }

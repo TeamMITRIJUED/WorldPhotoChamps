@@ -1,4 +1,5 @@
-﻿using Champ.App.Models.NotificationModels;
+﻿using System;
+using Champ.App.Models.NotificationModels;
 
 namespace Champ.App.Controllers
 {
@@ -66,6 +67,7 @@ namespace Champ.App.Controllers
             var notification = new Notification
             {
                 Text = text,
+                DateSent = DateTime.Now,
                 ReceiverId = model.UserId,
                 Receiver = invitedUser,
                 SenderId = loggedUserId,
