@@ -1,4 +1,6 @@
-﻿namespace Champ.App.Controllers
+﻿using Champ.App.Models.NotificationModels;
+
+namespace Champ.App.Controllers
 {
     using System.Linq;
     using System.Web;
@@ -47,7 +49,7 @@
                 throw new HttpException();
             }
 
-            if (contest.Invited.Any(p => p.Id == model.UserId) || contest.Participants.Any(p => p.Id == loggedUserId))
+            if (contest.Invited.Any(p => p.Id == model.UserId) || contest.Participants.Any(p => p.Id == model.UserId))
             {
                 return this.Content("User already invited", "text/html");
             }
@@ -67,7 +69,8 @@
                 ReceiverId = model.UserId,
                 Receiver = invitedUser,
                 SenderId = loggedUserId,
-                Sender = loggedUser
+                Sender = loggedUser,
+                ContestId = contest.Id
             };
 
             this.Data.Notifications.Add(notification);
@@ -161,6 +164,50 @@
             this.Data.SaveChanges();
 
             return RedirectToAction("MyContests", "Home");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult AcceptInvititation(ResolveNotificationBindingModel model)
+        {
+            if (!this.ModelState.IsValid || model == null)
+            {
+                throw new HttpException();
+            }
+
+            var loggedUserId = this.User.Identity.GetUserId();
+            var loggedUser = this.Data.Users.Find(loggedUserId);
+            var notification = this.Data.Notifications.Find(model.NotificationId);
+            var contest = this.Data.Contests.Find(model.ContestId);
+
+            contest.Invited.Remove(loggedUser);
+            contest.Participants.Add(loggedUser);
+            notification.IsRead = true;
+            this.Data.SaveChanges();
+
+            return this.Content("Invitation accepted", "text/html");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult DeclineInvitation(ResolveNotificationBindingModel model)
+        {
+            if (!this.ModelState.IsValid || model == null)
+            {
+                throw new HttpException();
+            }
+
+            var loggedUserId = this.User.Identity.GetUserId();
+            var loggedUser = this.Data.Users.Find(loggedUserId);
+            var notification = this.Data.Notifications.Find(model.NotificationId);
+            var contest = this.Data.Contests.Find(model.ContestId);
+
+            contest.Invited.Remove(loggedUser);
+            contest.Declined.Add(loggedUser);
+            notification.IsRead = true;
+            this.Data.SaveChanges();
+
+            return this.Content("Invitation declined", "text/html");
         }
     }
 }

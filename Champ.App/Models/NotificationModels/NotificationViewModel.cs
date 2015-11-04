@@ -6,7 +6,9 @@
 
     public class NotificationViewModel
     {
-        public int Id { get; set; }
+        public int NotificationId { get; set; }
+
+        public int ContestId { get; set; }
 
         public string Message { get; set; }
 
@@ -20,7 +22,8 @@
             {
                 return n => new NotificationViewModel
                 {
-                    Id = n.Id,
+                    NotificationId = n.Id,
+                    ContestId = n.ContestId,
                     Message = n.Text,
                     SenderId = n.SenderId,
                     SenderName = n.Sender.UserName

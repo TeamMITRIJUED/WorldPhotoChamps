@@ -17,12 +17,27 @@
 
         <div class="col-md-8" id="main-content">
             <div class="row">
-                @foreach (var notification in Model.Notifications)
+                @if (Model.Notifications.Any())
                 {
-                    @Html.DisplayFor(n => notification)
+                    <div class="col-md-6">
+                        <span id="notification-result" class="text-info"></span>
+                    </div>
+                    foreach (var not in Model.Notifications)
+                    {
+                        @Html.DisplayFor(n => not)
+                    }
+                }
+                else
+                {
+                    <p>You have no notifications yet</p>
                 }
             </div>
         </div>
     </div>
 </div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
 
