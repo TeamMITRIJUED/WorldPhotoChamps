@@ -25,6 +25,8 @@ namespace Champ.Data
 
         public virtual IDbSet<Vote> Votes { get; set; }
 
+        public virtual IDbSet<Notification> Notification { get; set; } 
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Contest>()
@@ -45,6 +47,26 @@ namespace Champ.Data
                     m.MapLeftKey("ContestId");
                     m.MapRightKey("MemberId");
                     m.ToTable("Contests_Evaluators");
+                });
+
+            modelBuilder.Entity<Contest>()
+                .HasMany(c => c.Invited)
+                .WithMany(u => u.InvitedContests)
+                .Map(m =>
+                {
+                    m.MapLeftKey("ContestId");
+                    m.MapRightKey("InvitedId");
+                    m.ToTable("Contests_Invitations");
+                });
+
+            modelBuilder.Entity<Contest>()
+                .HasMany(c => c.Declined)
+                .WithMany(u => u.DeclinedContests)
+                .Map(m =>
+                {
+                    m.MapLeftKey("ContestId");
+                    m.MapRightKey("DeclinedId");
+                    m.ToTable("Contests_Declined");
                 });
 
             modelBuilder.Entity<Contest>()
@@ -75,6 +97,16 @@ namespace Champ.Data
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Votes)
                 .WithRequired(v => v.Voter)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.ReceivedNotifications)
+                .WithOptional(n => n.Receiver)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.SentNotifications)
+                .WithOptional(n => n.Sender)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Picture>()

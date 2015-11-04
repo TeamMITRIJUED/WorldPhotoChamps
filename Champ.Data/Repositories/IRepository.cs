@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Champ.Data.Repositories
+﻿namespace Champ.Data.Repositories
 {
+    using System.Linq;
+
     public interface IRepository<T>
     {
         IQueryable<T> All();

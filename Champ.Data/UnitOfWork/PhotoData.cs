@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Champ.Data.Repositories;
-using Champ.Models;
-
-namespace Champ.Data.UnitOfWork
+﻿namespace Champ.Data.UnitOfWork
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using Repositories;
+    using Models;
+
     public class PhotoData : IPhotoData
     {
-        private DbContext context;
-        private IDictionary<Type, object> repositories;
+        private readonly DbContext context;
+        private readonly IDictionary<Type, object> repositories;
 
         public PhotoData(DbContext context)
         {
@@ -38,6 +35,11 @@ namespace Champ.Data.UnitOfWork
         public IRepository<Vote> Votes
         {
             get { return this.GetRepository<Vote>(); }
+        }
+
+        public IRepository<Notification> Notifications
+        {
+            get { return this.GetRepository<Notification>(); }
         }
 
         public int SaveChanges()

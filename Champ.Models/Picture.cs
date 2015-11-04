@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel;
 
     public class Picture
     {
@@ -18,6 +19,9 @@
         public string LocationPath { get; set; }
 
         public DateTime CreatedOn { get; set; }
+
+        [DefaultValue(false)]
+        public bool IsDeleted { get; set; }
 
         [Required]
         public string AuthorId { get; set; }

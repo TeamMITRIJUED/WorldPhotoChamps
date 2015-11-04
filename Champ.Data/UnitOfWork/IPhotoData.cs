@@ -1,8 +1,8 @@
-﻿using Champ.Data.Repositories;
-using Champ.Models;
-
-namespace Champ.Data.UnitOfWork
+﻿namespace Champ.Data.UnitOfWork
 {
+    using Repositories;
+    using Models;
+
     public interface IPhotoData
     {
         IRepository<Contest> Contests { get; }
@@ -12,6 +12,8 @@ namespace Champ.Data.UnitOfWork
         IRepository<User> Users { get; }
 
         IRepository<Vote> Votes { get; }
+
+        IRepository<Notification> Notifications { get; }
 
         int SaveChanges();
 

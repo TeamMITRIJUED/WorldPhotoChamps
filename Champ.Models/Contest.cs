@@ -9,7 +9,9 @@
     public class Contest
     {
         private ICollection<User> participants;
-        private ICollection<User> comittee; 
+        private ICollection<User> comittee;
+        private ICollection<User> invited; 
+        private ICollection<User> declined; 
         private ICollection<Picture> pictures;
 
         public Contest()
@@ -17,6 +19,8 @@
             this.participants = new HashSet<User>();
             this.pictures = new HashSet<Picture>();
             this.comittee = new HashSet<User>();
+            this.invited = new HashSet<User>();
+            this.declined = new HashSet<User>();
         }
 
         public int Id { get; set; }
@@ -72,6 +76,18 @@
         {
             get { return this.comittee; }
             set { this.comittee = value; }
+        }
+
+        public virtual ICollection<User> Invited
+        {
+            get { return this.invited; }
+            set { this.invited = value; }
+        }
+
+        public virtual ICollection<User> Declined
+        {
+            get { return this.declined; }
+            set { this.declined = value; }
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-namespace Champ.Data.Repositories
+﻿namespace Champ.Data.Repositories
 {
     using System.Data.Entity;
     using System.Linq;
