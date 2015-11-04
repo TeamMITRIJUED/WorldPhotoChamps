@@ -1,7 +1,6 @@
 ﻿namespace Champ.App.Areas.Dashboard.Controllers
 {
     using System.Web.Mvc;
-    using System;
     using System.Linq;
     using AutoMapper.QueryableExtensions;
 

@@ -6,8 +6,6 @@
     using App.Controllers;
     using App.Models.PhotoModels;
 
-
-
     [Authorize(Roles = "Admin")]
     public class PicturesController : BaseController
     {

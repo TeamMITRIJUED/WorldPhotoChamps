@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Champ.App.Models.ContestModels;
-
-namespace Champ.App.Areas.Dashboard.Models
+﻿namespace Champ.App.Areas.Dashboard.Models
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using App.Models.ContestModels;
+
     public class UserViewModel
     {
+        [Required]
         public string UserId { get; set; }
 
         public string Username { get; set; }
