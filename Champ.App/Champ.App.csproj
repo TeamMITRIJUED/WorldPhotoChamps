@@ -16,7 +16,8 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -216,6 +217,9 @@
     <Compile Include="Models\AccountModels\ManageViewModels.cs" />
     <Compile Include="Models\ContestModels\ContestParticipantViewModel.cs" />
     <Compile Include="Models\HomeModels\HomeViewModel.cs" />
+    <Compile Include="Models\NotificationModels\BrowseNotificationsViewModel.cs" />
+    <Compile Include="Models\NotificationModels\NotificationViewModel.cs" />
+    <Compile Include="Models\NotificationModels\ResolveNotificationBindingModel.cs" />
     <Compile Include="Models\PhotoModels\PhotoViewModel.cs" />
     <Compile Include="Models\SearchModels\SearchViewModel.cs" />
     <Compile Include="Models\UserModels\UserInvitationViewModel.cs" />
@@ -231,6 +235,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\zocial.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -318,6 +323,8 @@
     <Content Include="Views\Shared\DisplayTemplates\ContestParticipantViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ContestViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PhotoViewModel.cshtml" />
+    <Content Include="Views\Home\Notifications.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\NotificationViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Dashboard\Models\" />

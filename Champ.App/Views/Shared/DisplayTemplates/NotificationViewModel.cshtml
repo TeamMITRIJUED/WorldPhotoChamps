@@ -1,0 +1,54 @@
+﻿@using Champ.App.Models.NotificationModels
+@model NotificationViewModel
+@{
+    ViewData.TemplateInfo.HtmlFieldPrefix = "";
+}
+
+<div class="well well-sm">
+    <div class="row">
+        <div class="col-md-8">
+            @Model.Message
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-8">
+            From : @Model.SenderName
+        </div>
+    </div>
+    <br/>
+    @if (!Model.IsRead)
+    {
+        <div class="row">
+            <div class="col-md-2">
+                @using (Ajax.BeginForm("AcceptInvititation", "Users",
+                    new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "notification-result"
+                    }))
+                {
+                    @Html.Hidden("NotificationId", Model.NotificationId)
+                    @Html.Hidden("ContestId", Model.ContestId)
+                    <input type="submit" class="btn btn-primary" value="Accept"/>
+                }
+            </div>
+            <div class="col-md-2">
+                @using (Ajax.BeginForm("DeclineInvitation", "Users",
+                    new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "notification-result"
+                    }))
+                {
+                    @Html.Hidden("NotificationId", Model.NotificationId)
+                    @Html.Hidden("ContestId", Model.ContestId)
+                    <input type="submit" class="btn btn-primary" value="Decline"/>
+                }
+            </div>
+        </div>
+    }
+    <br />
+</div>

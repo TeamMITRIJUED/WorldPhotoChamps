@@ -1,15 +1,16 @@
-﻿using AutoMapper.QueryableExtensions;
-
-namespace Champ.App.Controllers
+﻿namespace Champ.App.Controllers
 {
+    using System;
     using System.Web.Mvc;
     using System.Linq;
     using Microsoft.AspNet.Identity;
-    using System;
+    using AutoMapper.QueryableExtensions;
 
     using Models.ContestModels;
     using Models.PhotoModels;
     using Models.HomeModels;
+    using Models.NotificationModels;
+
 
     public class HomeController : BaseController
     {
@@ -22,7 +23,7 @@ namespace Champ.App.Controllers
             if (loggedUserId != null)
             {
                 var contests = this.Data.Contests.All()
-                .Where(c => c.ClosesOn > DateTime.Now && c.Participants.Any(u => u.Id == loggedUserId))
+                .Where(c => c.Participants.Any(u => u.Id == loggedUserId))
                 .ToList();
 
                 var paged = new HomeViewModel
@@ -101,7 +102,6 @@ namespace Champ.App.Controllers
             var loggedUserId = this.User.Identity.GetUserId();
             var userContests = this.Data.Contests.All()
                 .Where(c => c.CreatorId == loggedUserId)
-                .Take(6)
                 .OrderByDescending(c => c.ClosesOn)
                 .ProjectTo<ContestViewModel>()
                 .ToList();
@@ -136,6 +136,22 @@ namespace Champ.App.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [Authorize]
+        public ActionResult Notifications()
+        {
+            var loggedUserId = this.User.Identity.GetUserId();
+
+            var model = new BrowseNotificationsViewModel
+            {
+                Notifications = this.Data.Notifications.All()
+                    .Where(n => n.ReceiverId == loggedUserId)
+                    .Select(NotificationViewModel.Create)
+                    .ToList()
+            };
+
+            return this.View(model);
         }
     }
 }
