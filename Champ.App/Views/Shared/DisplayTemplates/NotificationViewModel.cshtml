@@ -10,13 +10,13 @@
             @Model.Message
         </div>
     </div>
-    <br/>
+    <br />
     <div class="row">
         <div class="col-md-8">
             From : @Model.SenderName
         </div>
     </div>
-    <br/>
+    <br />
     @if (!Model.IsRead)
     {
         <div class="row">
@@ -31,7 +31,7 @@
                 {
                     @Html.Hidden("NotificationId", Model.NotificationId)
                     @Html.Hidden("ContestId", Model.ContestId)
-                    <input type="submit" class="btn btn-primary" value="Accept"/>
+                    <input type="submit" class="btn btn-primary" value="Accept" id="noty-btn" />
                 }
             </div>
             <div class="col-md-2">
@@ -45,7 +45,7 @@
                 {
                     @Html.Hidden("NotificationId", Model.NotificationId)
                     @Html.Hidden("ContestId", Model.ContestId)
-                    <input type="submit" class="btn btn-primary" value="Decline"/>
+                    <input type="submit" class="btn btn-primary" value="Decline" id="noty-btn" />
                 }
             </div>
         </div>
