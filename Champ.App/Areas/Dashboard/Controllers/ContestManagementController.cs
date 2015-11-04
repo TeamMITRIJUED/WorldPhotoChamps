@@ -6,7 +6,7 @@
     using AutoMapper.QueryableExtensions;
 
     using App.Controllers;
-    using Models.ContestModels;
+    using App.Models.ContestModels;
 
     [Authorize(Roles = "Admin")]
     public class ContestManagementController : BaseController

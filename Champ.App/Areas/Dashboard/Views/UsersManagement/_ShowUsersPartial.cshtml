@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Champ.App.Models.UserModels.UserProfileViewModel>
+﻿@model IEnumerable<Champ.App.Areas.Dashboard.Models.UserViewModel>
 
 @foreach (var user in Model)
 {
@@ -6,9 +6,30 @@
         <h3>@user.Username</h3>
         <div class="panel panel-default">
             <div class="panel-body">
-                <p>Participates in: @user.ParticipatedInContests</p>
                 <p>Created: @user.OwnContest</p>
+                <ul class="list-group">
+                    @foreach (var contest in user.OwnContests)
+                    {
+                        <li class="list-group-item" style="background: #FCF8E3">
+                            <div class="row">
+                                <div class="col-lg-10">@contest.Title</div>
+                                <div class="col-lg-2">@Html.ActionLink("delete", "DeleteContest", "ContestManagement", new { Id = contest.Id }, new { @class = "btn btn-info btn-sm" })</div>
+                            </div>
+                            
+                        </li>
+                    }
+                </ul>
                 <p>Pictures uploaded: @user.UploadedPhotos</p>
+                <p>Participates in:</p>
+
+                <ul class="list-group">
+                    @foreach (var contest in user.Contests)
+                    {
+                        <li class="list-group-item" style="background: #D9EDF7">
+                            <p>@contest.Title<a href="#"><span class="glyphicon glyphicon-flash" style="float: right"></span></a></p>                            
+                        </li>
+                    }
+                </ul>
             </div>
         </div>
     </div>

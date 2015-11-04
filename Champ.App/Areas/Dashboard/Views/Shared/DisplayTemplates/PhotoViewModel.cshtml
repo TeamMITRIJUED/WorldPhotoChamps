@@ -1,14 +1,30 @@
 ﻿@model Champ.App.Models.PhotoModels.PhotoViewModel
 
 <div class="col-md-6">
-    <img src="@Model.Location" class="img-responsive" alt="No preview available" id="imageresource" /> 
+
+    <img src="@Model.Location" class="img-responsive" alt="No preview available" id="imageresource" />
+
     <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-4">
             @Model.Author
         </div>
         <div class="col-sm-4">
             Votes : @Model.Votes
+            id: @Model.Id
         </div>
+        @if (Model.IsDeleted == false)
+        {
+
+            <div class="col-sm-4">
+                @Html.ActionLink("Delete", "Remove", "Pictures", new { Id = Model.Id }, new { @class = "btn btn-info btn-sm" })
+            </div>
+        }
+        else
+        {
+            <p style="color: red">
+                <strong>Deleted.</strong>
+            </p>
+        }
     </div>
     <br />
 </div>

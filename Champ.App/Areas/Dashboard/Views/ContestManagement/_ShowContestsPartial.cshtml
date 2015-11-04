@@ -12,7 +12,7 @@
                     <p>@contest.Description</p>
                     <p>allowed: @contest.NumberOfAllowedParticipants</p>
                     <p>count: @contest.CountOfParticipants</p>
-                    <p>id: @contest.Id</p>
+                    <p>id: @contest.ClosesOn</p>
                     
                     @if (contest.IsDismissed == false && (contest.ClosesOn > DateTime.Now || contest.CountOfParticipants < contest.NumberOfAllowedParticipants))
                     {

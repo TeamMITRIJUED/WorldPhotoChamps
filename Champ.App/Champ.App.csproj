@@ -197,6 +197,7 @@
     <Compile Include="Areas\Dashboard\Controllers\PicturesController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\UsersManagementController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
+    <Compile Include="Areas\Dashboard\Models\UserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContestController.cs" />
@@ -327,7 +328,6 @@
     <Content Include="Views\Shared\DisplayTemplates\NotificationViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Dashboard\Models\" />
     <Folder Include="Views\Photos\" />
   </ItemGroup>
   <ItemGroup>
