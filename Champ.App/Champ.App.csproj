@@ -247,6 +247,7 @@
     <Content Include="Areas\Dashboard\Views\ContestManagement\_ShowContestsPartial.cshtml" />
     <Content Include="Areas\Dashboard\Views\UsersManagement\_ShowUsersPartial.cshtml" />
     <Content Include="Areas\Dashboard\Views\Pictures\_ShowPhotosPartial.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Shared\DisplayTemplates\PhotoViewModel.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -13,11 +13,12 @@
         public ActionResult Get()
         {
             var photos = this.Data.Pictures.All()
-                .Take(10)
+                .OrderByDescending(p => p.CreatedOn)
                 .Select(p => new PhotoViewModel
                 {
                     Location = p.LocationPath,
-                    Author = p.Author.UserName
+                    Author = p.Author.UserName,
+                    Votes = p.Votes.Count
                 })
                 .ToList();
 

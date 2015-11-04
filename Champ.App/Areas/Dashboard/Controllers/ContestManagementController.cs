@@ -14,13 +14,29 @@
         public ActionResult Get()
         {
             var contests = this.Data.Contests.All()
-                .Where(c => c.ClosesOn > DateTime.Now)
-                .OrderByDescending(c => c.ClosesOn)
-                .Take(10)
+                .OrderByDescending(c => c.CreatenOn)
                 .ProjectTo<ContestViewModel>()
                 .ToList();
 
             return this.PartialView("_ShowContestsPartial", contests);
+        }
+
+        public ActionResult DismissContest(int id)
+        {
+            var contestDismissed = this.Data.Contests.Find(id);
+            contestDismissed.IsDismissed = true;
+            this.Data.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult DeleteContest(int id)
+        {
+            var contestDeleted = this.Data.Contests.Find(id);
+            this.Data.Contests.Delete(contestDeleted);
+            this.Data.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
 	}
 }

@@ -1,0 +1,14 @@
+﻿@model Champ.App.Models.PhotoModels.PhotoViewModel
+
+<div class="col-md-6">
+    <img src="@Model.Location" class="img-responsive" alt="No preview available" id="imageresource" /> 
+    <div class="row">
+        <div class="col-sm-5">
+            @Model.Author
+        </div>
+        <div class="col-sm-4">
+            Votes : @Model.Votes
+        </div>
+    </div>
+    <br />
+</div>

@@ -2,13 +2,7 @@
 
 @foreach (var photo in Model)
 {
-    <div class="container">
-        <h3>@photo.Author</h3>
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <h4>It should display the actual photo:</h4>
-                <p>@photo.Location</p>
-            </div>
-        </div>
+    <div>
+        @Html.DisplayFor(p => photo)
     </div>
 }

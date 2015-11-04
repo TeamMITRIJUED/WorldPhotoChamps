@@ -1,14 +1,37 @@
 ﻿@model IEnumerable<Champ.App.Models.ContestModels.ContestViewModel>
-
-@foreach (var contest in Model)
-{
-    <div class="container">
-        <h3>@contest.Title</h3>
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <h4>Description:</h4>
-                <p>@contest.Description</p>
+<div class="row">
+    <div class="container" style="padding-top: 10px">
+        @foreach (var contest in Model)
+        {
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4>@contest.Title</h4>
+                </div>
+                <div class="panel-body">
+                    <h4>Description:</h4>
+                    <p>@contest.Description</p>
+                    <p>allowed: @contest.NumberOfAllowedParticipants</p>
+                    <p>count: @contest.CountOfParticipants</p>
+                    <p>id: @contest.Id</p>
+                    
+                    @if (contest.IsDismissed == false && (contest.ClosesOn > DateTime.Now || contest.CountOfParticipants < contest.NumberOfAllowedParticipants))
+                    {
+                        @Html.ActionLink("Dismiss", "DismissContest", "ContestManagement", new { Id = contest.Id }, new { @class = "btn btn-info btn-sm" })
+                    }
+                    else
+                    {
+                        if (contest.ClosesOn < DateTime.Now || contest.CountOfParticipants >= contest.NumberOfAllowedParticipants)
+                        {
+                            <p style="color: red">This contest is already finalized.</p>
+                        }
+                        else
+                        {
+                            <p style="color: red">This contest is dismissed.</p>
+                        }
+                    }
+                    @Html.ActionLink("Delete", "DeleteContest", "ContestManagement", new { Id = contest.Id }, new { @class = "btn btn-info btn-sm" })
+                </div>
             </div>
-        </div>
+        }
     </div>
-}
+</div>
