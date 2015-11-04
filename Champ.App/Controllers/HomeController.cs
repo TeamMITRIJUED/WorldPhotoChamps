@@ -23,7 +23,7 @@
             if (loggedUserId != null)
             {
                 var contests = this.Data.Contests.All()
-                .Where(c => c.ClosesOn > DateTime.Now && c.Participants.Any(u => u.Id == loggedUserId))
+                .Where(c => c.Participants.Any(u => u.Id == loggedUserId))
                 .ToList();
 
                 var paged = new HomeViewModel
@@ -102,7 +102,6 @@
             var loggedUserId = this.User.Identity.GetUserId();
             var userContests = this.Data.Contests.All()
                 .Where(c => c.CreatorId == loggedUserId)
-                .Take(6)
                 .OrderByDescending(c => c.ClosesOn)
                 .ProjectTo<ContestViewModel>()
                 .ToList();

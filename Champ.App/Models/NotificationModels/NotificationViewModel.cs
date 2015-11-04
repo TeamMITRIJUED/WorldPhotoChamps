@@ -16,6 +16,8 @@
 
         public string SenderName { get; set; }
 
+        public bool IsRead { get; set; }
+
         public static Expression<Func<Notification, NotificationViewModel>> Create
         {
             get
@@ -26,7 +28,8 @@
                     ContestId = n.ContestId,
                     Message = n.Text,
                     SenderId = n.SenderId,
-                    SenderName = n.Sender.UserName
+                    SenderName = n.Sender.UserName,
+                    IsRead = n.IsRead
                 };
             }
         }
