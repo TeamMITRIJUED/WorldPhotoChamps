@@ -11,6 +11,7 @@ namespace Champ.App.Controllers
     using Models.PhotoModels;
     using Models.HomeModels;
 
+
     public class HomeController : BaseController
     {
         private const int PageSize = 5;

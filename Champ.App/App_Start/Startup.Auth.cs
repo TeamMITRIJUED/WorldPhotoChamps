@@ -60,11 +60,11 @@ namespace Champ.App
                appId: "821215987996519",
                appSecret: "ea87468cad178c5e2cf7351e98ff1733");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "921922629804-7k49f2go1hppsrldo3e7904ejukj7hhf.apps.googleusercontent.com",
+                ClientSecret = "163pjPH0VdUYIFvW6s8Nz3fs"
+            });
         }
     }
 }
