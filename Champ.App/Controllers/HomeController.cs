@@ -36,11 +36,12 @@ namespace Champ.App.Controllers
                         .OrderByDescending(c => c.CreatenOn)
                         .Skip((id - 1) * PageSize)
                         .Take(PageSize)
-                        .Select(c => new ContestParticipantViewModel()
+                        .Select(c => new ContestParticipantViewModel
                         {
                             Id = c.Id,
                             Title = c.Title,
                             Creator = c.Creator.UserName,
+                            CurrentLeader = c.CurrentLeader == null ? "No leader yet" : c.CurrentLeader.UserName,
                             Pictures = c.Pictures
                                 .Take(4)
                                 .Select(p => new PhotoViewModel()
@@ -78,6 +79,7 @@ namespace Champ.App.Controllers
                     .Select(c => new ContestParticipantViewModel
                     {
                         Title = c.Title,
+                        CurrentLeader = c.CurrentLeader == null ? "No leader yet" : c.CurrentLeader.UserName,
                         Pictures = c.Pictures
                             .Take(3)
                             .Select(p => new PhotoViewModel
@@ -87,7 +89,7 @@ namespace Champ.App.Controllers
                                 Votes = p.Votes.Count
                             }).ToList(),
                         Description = c.Description
-                    })
+                    }).ToList()
             };
 
             return View(result);

@@ -7,6 +7,7 @@
     using Microsoft.WindowsAzure.Storage.Blob;
     using Microsoft.AspNet.Identity;
     using System.Web.Mvc;
+    using System.Linq;
 
     using Champ.Models;
 
@@ -18,15 +19,40 @@
             var loggedUserId = this.User.Identity.GetUserId();
             var loggedUser = this.Data.Users.Find(loggedUserId);
             var photo = this.Data.Pictures.Find(photoId);
+
+            if (photo.AuthorId == loggedUserId)
+            {
+                return this.Json(new
+                {
+                    result = "fail",
+                    message = "You cannot vote for your own photo"
+                }, JsonRequestBehavior.AllowGet);
+            }
+
+            if (photo.Votes.Any(v => v.VoterId == loggedUserId))
+            {
+                return this.Json(new
+                {
+                    result = "fail",
+                    message = "Already voted for that photo"
+                }, JsonRequestBehavior.AllowGet);
+            }
             
             var vote = new Vote
-            {
+            {   
                 VotedOn = DateTime.Now,
                 Voter = loggedUser,
                 Picture = photo
             };
 
             photo.Votes.Add(vote);
+            var contest = this.Data.Contests.Find(photo.ContestId);
+            var leaderId = contest.Pictures
+                .OrderByDescending(p => p.Votes.Count)
+                .Take(1)
+                .Select(p => p.AuthorId)
+                .FirstOrDefault();
+            contest.CurrentLeader = this.Data.Users.Find(leaderId);
             this.Data.SaveChanges();
 
             return this.Json(new {result = "success"}, JsonRequestBehavior.AllowGet);

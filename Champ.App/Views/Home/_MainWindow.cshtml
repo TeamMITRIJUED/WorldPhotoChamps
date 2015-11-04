@@ -10,6 +10,7 @@
                 <div class="panel-heading">
                     <h4>@Html.ActionLink(contest.Title, "GetContest", "Contest", new {id = contest.Id}, null)</h4>
                     <h6>Created by: @contest.Creator</h6>
+                    <h6>Leader: @contest.CurrentLeader</h6>
                 </div>
                 <div class="panel-body">
                     <div class="row">

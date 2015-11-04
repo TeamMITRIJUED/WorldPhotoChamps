@@ -34,6 +34,8 @@ $("#vote-photo").click(function() {
     $.get("/Photos/Vote/?photoId=" + photoId, function (response) {
         if (response.result === "success") {
             $("#vote-photo").hide();
+        } else {
+            $("#voting-result").html(response.message);
         }
     });
 });

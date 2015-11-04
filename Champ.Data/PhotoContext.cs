@@ -63,6 +63,11 @@ namespace Champ.Data
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
+                .HasMany(u => u.LeadingContests)
+                .WithOptional(c => c.CurrentLeader)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
                 .HasMany(u => u.UploadedPictures)
                 .WithRequired(p => p.Author)
                 .WillCascadeOnDelete(false);

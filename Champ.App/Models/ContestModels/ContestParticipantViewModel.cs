@@ -8,6 +8,8 @@
     {
         public string Creator { get; set; }
 
+        public string CurrentLeader { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public ICollection<PhotoViewModel> Pictures { get; set; }

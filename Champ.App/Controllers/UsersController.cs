@@ -152,7 +152,7 @@
             editedContest.VotingStrategy = model.VotingStrategy;
             this.Data.SaveChanges();
 
-            return RedirectToAction("MyContests", "Users");
+            return RedirectToAction("MyContests", "Home");
         }
     }
 }

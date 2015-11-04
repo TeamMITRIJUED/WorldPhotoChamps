@@ -1,6 +1,4 @@
-﻿using System.Security.Permissions;
-
-namespace Champ.Models
+﻿namespace Champ.Models
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -33,6 +31,10 @@ namespace Champ.Models
         public string CreatorId { get; set; }
 
         public virtual User Creator { get; set; }
+
+        public string CurrentLeaderId { get; set; }
+
+        public virtual User CurrentLeader { get; set; }
 
         public string WinnerId { get; set; }
 

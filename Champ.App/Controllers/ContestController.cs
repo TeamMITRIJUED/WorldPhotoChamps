@@ -88,8 +88,10 @@
                     ClosesOn = contest.ClosesOn,
                     Pictures = contest.Pictures.Take(10).Select(p => new PhotoViewModel
                     {
+                        Id = p.ContestId,
                         Author = p.Author.UserName,
-                        Location = p.LocationPath
+                        Location = p.LocationPath,
+                        Votes = p.Votes.Count
                     }).ToList(),
                     HasAddedPhoto = contest.Pictures.Any(p => p.AuthorId == loggedUserId)
                 };
