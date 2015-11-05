@@ -76,6 +76,11 @@
             var user = this.Data.Users.All().FirstOrDefault(u => u.Id == loggedUserId);
             var contest = this.Data.Contests.Find(id);
 
+            if (contest.IsDeleted)
+            {
+                return this.View("Error");
+            }
+
             if (loggedUserId != null && contest.Participants.Any(p => p.Id == loggedUserId))
             {
                 var contestToReturn = new ContestParticipantViewModel()
@@ -124,6 +129,7 @@
             var loggedUserId = User.Identity.GetUserId();
 
             var contests = this.Data.Contests.All()
+                .Where(c => !c.IsDeleted)
                 .Where(c => c.ClosesOn > DateTime.Now && c.Participants.Count(p => p.Id == loggedUserId) == 0)
                 .ToList();
 
@@ -156,7 +162,7 @@
         public ActionResult PastContests()
         {
             var contests = this.Data.Contests.All()
-                .Where(c => c.ClosesOn <= DateTime.Now)
+                .Where(c => c.ClosesOn <= DateTime.Now && !c.IsDeleted)
                 .OrderByDescending(c => c.ClosesOn)
                 .ProjectTo<ContestViewModel>()
                 .ToList();

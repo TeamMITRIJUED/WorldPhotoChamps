@@ -3,6 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.Collections.Generic;
+    using System.ComponentModel;
 
     using Enums;
 
@@ -33,6 +34,9 @@
 
         [Required]
         public string CreatorId { get; set; }
+
+        [DefaultValue(false)]
+        public bool IsDeleted { get; set; }
 
         public virtual User Creator { get; set; }
 

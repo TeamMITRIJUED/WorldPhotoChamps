@@ -23,13 +23,14 @@
             if (loggedUserId != null)
             {
                 var contests = this.Data.Contests.All()
-                .Where(c => c.Participants.Any(u => u.Id == loggedUserId))
-                .ToList();
+                    .Where(c => !c.IsDeleted)
+                    .Where(c => c.Participants.Any(u => u.Id == loggedUserId))
+                    .ToList();
 
                 var paged = new HomeViewModel
                 {
-                    PageCount = contests.Count % PageSize == 0 
-                            ? contests.Count / PageSize 
+                    PageCount = contests.Count % PageSize == 0
+                            ? contests.Count / PageSize
                             : contests.Count / PageSize + 1,
                     PageSize = PageSize,
                     CurrentPage = id,
@@ -63,6 +64,7 @@
 
 
             var contestsForAnonymUser = this.Data.Contests.All()
+                .Where(c => !c.IsDeleted)
                 .OrderByDescending(c => c.CreatenOn)
                 .ToList();
 
@@ -101,7 +103,7 @@
         {
             var loggedUserId = this.User.Identity.GetUserId();
             var userContests = this.Data.Contests.All()
-                .Where(c => c.CreatorId == loggedUserId)
+                .Where(c => c.CreatorId == loggedUserId && !c.IsDeleted)
                 .OrderByDescending(c => c.ClosesOn)
                 .ProjectTo<ContestViewModel>()
                 .ToList();

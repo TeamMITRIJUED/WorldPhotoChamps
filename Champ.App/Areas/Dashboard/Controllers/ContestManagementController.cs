@@ -44,7 +44,22 @@
                 return HttpNotFound();
             }
 
-            this.Data.Contests.Delete(contestDeleted);
+            contestDeleted.IsDeleted = true;
+            this.Data.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult AllowContest(int id)
+        {
+            var contestDeleted = this.Data.Contests.Find(id);
+
+            if (contestDeleted == null)
+            {
+                return HttpNotFound();
+            }
+
+            contestDeleted.IsDeleted = false;
             this.Data.SaveChanges();
 
             return RedirectToAction("Index", "Home");

@@ -18,6 +18,8 @@
         [StringLength(100, ErrorMessage = "Description length should be less than 100")]
         public string Description { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public DateTime CreatenOn { get; set; }
 
         public VotingStrategy VotingStrategy { get; set; }
