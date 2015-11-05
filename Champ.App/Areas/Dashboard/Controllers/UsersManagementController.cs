@@ -46,7 +46,18 @@
         public ActionResult Remove(int userId, int contestId)
         {
             var user = this.Data.Users.Find(userId);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
             var contest = this.Data.Contests.Find(contestId);
+
+            if (contest == null)
+            {
+                return HttpNotFound();
+            }
 
             contest.Participants.Remove(user);
             user.ParticipatedIn.Remove(contest);

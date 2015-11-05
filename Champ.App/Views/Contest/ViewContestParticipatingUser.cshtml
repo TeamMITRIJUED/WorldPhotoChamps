@@ -8,9 +8,14 @@
     <div>
         @Html.DisplayFor(c => Model)
     </div>
-
-    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Add a photo</button>
-
+    @if (Model.IsDismissed == false)
+    {
+        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Add a photo</button>
+    }
+    else
+    {
+        <div style ="color: red">Dismissed.</div>
+    }
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             @Html.Partial("_AddPhoto")

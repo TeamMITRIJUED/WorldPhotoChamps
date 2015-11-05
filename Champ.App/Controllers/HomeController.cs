@@ -116,7 +116,7 @@
             var loggedUserId = this.User.Identity.GetUserId();
 
             var photos = this.Data.Pictures.All()
-                .Where(u => u.AuthorId == loggedUserId)
+                .Where(u => u.AuthorId == loggedUserId && u.IsDeleted == false)
                 .Take(10)
                 .Select(p => new PhotoViewModel
                 {

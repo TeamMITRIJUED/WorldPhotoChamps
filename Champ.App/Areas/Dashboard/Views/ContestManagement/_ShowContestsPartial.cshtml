@@ -10,9 +10,9 @@
                 <div class="panel-body">
                     <h4>Description:</h4>
                     <p>@contest.Description</p>
-                    <p>allowed: @contest.NumberOfAllowedParticipants</p>
-                    <p>count: @contest.CountOfParticipants</p>
-                    <p>id: @contest.ClosesOn</p>
+                    <p>Allowed: @contest.NumberOfAllowedParticipants</p>
+                    <p>Current count: @contest.CountOfParticipants</p>
+                    <p>Finishes: @contest.ClosesOn</p>
                     
                     @if (contest.IsDismissed == false && (contest.ClosesOn > DateTime.Now || contest.CountOfParticipants < contest.NumberOfAllowedParticipants))
                     {

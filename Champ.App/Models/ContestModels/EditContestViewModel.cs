@@ -19,12 +19,6 @@ namespace Champ.App.Models.ContestModels
 
         public VotingStrategy VotingStrategy { get; set; }
 
-        //public RewardStrategy RewardStrategy { get; set; }
-
-        //public ParticipationStrategy ParticipationStrategy { get; set; }
-
-        //public DeadlineStrategy DeadlineStrategy { get; set; }
-
         public int? NumberOfAllowedParticipants { get; set; }
 
         public static Expression<Func<Contest, EditContestViewModel>> Create
@@ -36,10 +30,7 @@ namespace Champ.App.Models.ContestModels
                     Id = c.Id,
                     Description = c.Description,
                     ClosesOn = c.ClosesOn,
-                    //DeadlineStrategy = c.DeadlineStrategy,
                     NumberOfAllowedParticipants = c.NumberOfAllowedParticipants,
-                    //ParticipationStrategy = c.ParticipationStrategy,
-                    //RewardStrategy = c.RewardStrategy,
                     VotingStrategy = c.VotingStrategy
                 };
             }

@@ -133,6 +133,7 @@ namespace Champ.App.Controllers
         }
 
         [Authorize]
+        [ValidateAntiForgeryToken]
         public ActionResult EditContest(EditContestViewModel model)
         {
             if (model == null || !this.ModelState.IsValid)

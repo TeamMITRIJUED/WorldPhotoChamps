@@ -10,6 +10,7 @@
 
         @using (@Html.BeginForm("EditContest", "Users", FormMethod.Post))
         {
+            @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
 
             <div class="form-group">

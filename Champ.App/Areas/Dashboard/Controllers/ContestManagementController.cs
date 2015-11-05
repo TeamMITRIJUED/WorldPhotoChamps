@@ -23,6 +23,12 @@
         public ActionResult DismissContest(int id)
         {
             var contestDismissed = this.Data.Contests.Find(id);
+
+            if (contestDismissed == null)
+            {
+                return HttpNotFound();
+            }
+
             contestDismissed.IsDismissed = true;
             this.Data.SaveChanges();
 
@@ -32,6 +38,12 @@
         public ActionResult DeleteContest(int id)
         {
             var contestDeleted = this.Data.Contests.Find(id);
+
+            if (contestDeleted == null)
+            {
+                return HttpNotFound();
+            }
+
             this.Data.Contests.Delete(contestDeleted);
             this.Data.SaveChanges();
 

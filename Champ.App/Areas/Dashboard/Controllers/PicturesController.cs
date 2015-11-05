@@ -29,6 +29,12 @@
         public ActionResult Remove(int id)
         {
             var removedPhoto = this.Data.Pictures.Find(id);
+
+            if (removedPhoto == null)
+            {
+                return HttpNotFound();
+            }
+
             removedPhoto.IsDeleted = true;
             this.Data.SaveChanges();
 

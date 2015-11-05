@@ -93,7 +93,8 @@
                         Location = p.LocationPath,
                         Votes = p.Votes.Count
                     }).ToList(),
-                    HasAddedPhoto = contest.Pictures.Any(p => p.AuthorId == loggedUserId)
+                    HasAddedPhoto = contest.Pictures.Any(p => p.AuthorId == loggedUserId),
+                    IsDismissed = contest.IsDismissed
                 };
                 return View("ViewContestParticipatingUser", contestToReturn);
             }

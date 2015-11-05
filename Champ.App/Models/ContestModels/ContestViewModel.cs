@@ -20,13 +20,10 @@
 
         public DateTime CreatenOn { get; set; }
 
-        [Required(ErrorMessage = "Voting Strategy is required.")]
         public VotingStrategy VotingStrategy { get; set; }
 
-        [Required(ErrorMessage = "Reward Strategy is required.")]
         public RewardStrategy RewardStrategy { get; set; }
 
-        [Required(ErrorMessage = "Participation Strategy is required.")]
         public ParticipationStrategy ParticipationStrategy { get; set; }
 
         public DateTime? ClosesOn { get; set; }
@@ -34,7 +31,6 @@
         [Range(5, 100)]
         public int? NumberOfAllowedParticipants { get; set; }
 
-        [Required(ErrorMessage = "Deadline Strategy is required.")]
         public DeadlineStrategy DeadlineStrategy { get; set; }
 
         public int CountOfParticipants { get; set; }
