@@ -10,6 +10,7 @@
     using Models.PhotoModels;
     using Models.ContestModels;
 
+    [ValidateInput(false)]
     public class ContestController : BaseController
     {
 
